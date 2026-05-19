@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M.K GATHU - Complete System Test</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #0a0a0a;
+            color: #e8e8e8;
+        }
+        h1, h2 { color: #D4AF37; }
+        button {
+            background: #D4AF37;
+            color: #0a0a0a;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        button:hover { opacity: 0.9; }
+        .result {
+            background: #1a1a1a;
+            border-left: 4px solid #D4AF37;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .success { border-left-color: #4caf50; }
+        .error { border-left-color: #f44336; }
+        .info { border-left-color: #D4AF37; }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #e8e8e8;
+            border-radius: 4px;
+        }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; color: #D4AF37; }
+    </style>
+</head>
+<body>
+    <h1>🧪 M.K GATHU - Complete System Test</h1>
+    
+    <div style="background: #1a1a1a; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+        <h3>📋 Configuration</h3>
+        <p><strong>Apps Script URL:</strong> <span id="scriptUrl"></span></p>
+        <p><strong>Sheet ID:</strong> <span id="sheetId"></span></p>
+        <p><strong>Admin Email:</strong> <span id="adminEmail"></span></p>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <button onclick="testGet()">1. Test GET (Check Script is Running)</button>
+        <button onclick="testContact()">2. Test Contact Form</button>
+        <button onclick="testReview()">3. Test Review Form</button>
+        <button onclick="checkSheet()">4. Check Google Sheet</button>
+        <button onclick="runAllTests()">▶ Run All Tests</button>
+        <button onclick="clearLogs()">🗑 Clear Logs</button>
+    </div>
+
+    <h2>📊 Test Results:</h2>
+    <div id="results" class="result info">Click a button to start testing...</div>
+
+    <h2>📝 Manual Test Form:</h2>
+    <div style="background: #1a1a1a; padding: 20px; border-radius: 8px;">
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" id="manualName" value="Manual Test User">
+        </div>
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" id="manualEmail" value="rafayellmwong4325@gmail.com">
+        </div>
+        <div class="form-group">
+            <label>Message:</label>
+            <textarea id="manualMessage" rows="3">This is a manual test message from the HTML test page.</textarea>
+        </div>
+        <button onclick="manualTest()">Send Manual Test</button>
+    </div>
+
+    <script>
+        // CONFIGURATION - Update these with your actual values
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzsANgWy2JzJgOUv9S3tHtrDse-9fKOl02NyY-meGB8pj47tyhwgJ3EMKNffVeJ8jnZIw/exec";
+        const SHEET_ID = "1ZlNKK6GXW9jRuwHuTMqwJWgaUdIexoS4eGrJyps17Tc";
+        const ADMIN_EMAIL = "rafayellmwong4325@gmail.com";
+        
+        // Display configuration
+        document.getElementById('scriptUrl').textContent = SCRIPT_URL;
+        document.getElementById('sheetId').textContent = SHEET_ID;
+        document.getElementById('adminEmail').textContent = ADMIN_EMAIL;
+        
+        function log(message, type = 'info') {
+            const resultsDiv = document.getElementById('results');
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = `[${timestamp}] ${message}`;
+            
+            if (type === 'success') {
+                resultsDiv.innerHTML += `<div style="color: #4caf50;">✅ ${logEntry}</div>`;
+            } else if (type === 'error') {
+                resultsDiv.innerHTML += `<div style="color: #f44336;">❌ ${logEntry}</div>`;
+            } else {
+                resultsDiv.innerHTML += `<div style="color: #D4AF37;">📝 ${logEntry}</div>`;
+            }
+            
+            resultsDiv.scrollTop = resultsDiv.scrollHeight;
+            console.log(logEntry);
+        }
+        
+        function clearLogs() {
+            document.getElementById('results').innerHTML = 'Logs cleared. Click a button to start testing...';
+        }
+        
+        async function testGet() {
+            log('Testing GET request to Apps Script...', 'info');
+            
+            try {
+                const response = await fetch(SCRIPT_URL);
+                const data = await response.json();
+                log(`GET successful! Response: ${JSON.stringify(data)}`, 'success');
+                return data;
+            } catch(error) {
+                log(`GET failed: ${error.message}`, 'error');
+                return null;
+            }
+        }
+        
+        async function testContact() {
+            log('Testing Contact Form submission...', 'info');
+            
+            const testData = {
+                type: "contact",
+                fullname: "System Test User",
+                email: ADMIN_EMAIL,
+                phone: "+254 700 000000",
+                serviceInterest: "Business Advisory",
+                message: "This is a system test message - " + new Date().toISOString(),
+                timestamp: new Date().toISOString()
+            };
+            
+            log(`Sending data: ${JSON.stringify(testData, null, 2)}`, 'info');
+            
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(testData)
+                });
+                
+                const result = await response.json();
+                log(`Response: ${JSON.stringify(result)}`, result.success ? 'success' : 'error');
+                
+                if (result.success) {
+                    log('✅ Contact form test PASSED!', 'success');
+                    log('📧 Check your email at: ' + ADMIN_EMAIL, 'info');
+                    log('📊 Check your Google Sheet for new entry', 'info');
+                } else {
+                    log(`❌ Contact form test FAILED: ${result.error}`, 'error');
+                }
+                
+                return result;
+            } catch(error) {
+                log(`❌ Fetch error: ${error.message}`, 'error');
+                return null;
+            }
+        }
+        
+        async function testReview() {
+            log('Testing Review Form submission...', 'info');
+            
+            const testData = {
+                type: "review",
+                name: "System Test Reviewer",
+                email: ADMIN_EMAIL,
+                company: "Test Company Ltd",
+                position: "CEO",
+                rating: 5,
+                service: "Tax & KRA Compliance",
+                review: "This is a system test review - " + new Date().toISOString(),
+                timestamp: new Date().toISOString()
+            };
+            
+            log(`Sending data: ${JSON.stringify(testData, null, 2)}`, 'info');
+            
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(testData)
+                });
+                
+                const result = await response.json();
+                log(`Response: ${JSON.stringify(result)}`, result.success ? 'success' : 'error');
+                
+                if (result.success) {
+                    log('✅ Review form test PASSED!', 'success');
+                } else {
+                    log(`❌ Review form test FAILED: ${result.error}`, 'error');
+                }
+                
+                return result;
+            } catch(error) {
+                log(`❌ Fetch error: ${error.message}`, 'error');
+                return null;
+            }
+        }
+        
+        async function checkSheet() {
+            log('Checking Google Sheet accessibility...', 'info');
+            log(`Sheet URL: https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit`, 'info');
+            log('Please manually check your Google Sheet for:', 'info');
+            log('  - Contact_Submissions tab with headers and data', 'info');
+            log('  - Review_Submissions tab with headers and data', 'info');
+            log(`  - Email should be sent to: ${ADMIN_EMAIL}`, 'info');
+        }
+        
+        async function manualTest() {
+            const name = document.getElementById('manualName').value;
+            const email = document.getElementById('manualEmail').value;
+            const message = document.getElementById('manualMessage').value;
+            
+            log(`Manual test with: Name=${name}, Email=${email}`, 'info');
+            
+            const testData = {
+                type: "contact",
+                fullname: name,
+                email: email,
+                phone: "+254 700 000000",
+                serviceInterest: "Manual Test",
+                message: message,
+                timestamp: new Date().toISOString()
+            };
+            
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(testData)
+                });
+                
+                const result = await response.json();
+                log(`Response: ${JSON.stringify(result)}`, result.success ? 'success' : 'error');
+            } catch(error) {
+                log(`Error: ${error.message}`, 'error');
+            }
+        }
+        
+        async function runAllTests() {
+            clearLogs();
+            log('🚀 Starting complete system test suite...', 'info');
+            log('═'.repeat(50), 'info');
+            
+            await testGet();
+            await new Promise(r => setTimeout(r, 1000));
+            
+            await testContact();
+            await new Promise(r => setTimeout(r, 1000));
+            
+            await testReview();
+            await new Promise(r => setTimeout(r, 1000));
+            
+            await checkSheet();
+            
+            log('═'.repeat(50), 'info');
+            log('✅ Test suite complete!', 'success');
+            log('📋 Next steps:', 'info');
+            log('   1. Check your email inbox', 'info');
+            log('   2. Check your Google Sheet', 'info');
+            log('   3. Check Apps Script logs (View → Logs)', 'info');
+        }
+        
+        // Auto-run test when page loads
+        window.addEventListener('load', () => {
+            log('Test page loaded. Click "Run All Tests" to begin.', 'info');
+        });
+    </script>
+</body>
+</html>
