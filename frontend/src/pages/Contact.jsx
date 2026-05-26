@@ -93,7 +93,7 @@ export default function Contact() {
           <div className="contact-grid">
             {/* Contact Information Column */}
             <div className="contact-info">
-              <h3><i className="fas fa-phone-alt"></i> Contact Details</h3>
+              <h3> Contact Details</h3>
               
               <div className="contact-detail">
                 <i className="fas fa-envelope"></i>

@@ -128,13 +128,17 @@ export default function Reviews() {
       return;
     }
 
-    // Submit using the centralized service
+    // Log what we're submitting
+    console.log('📤 Submitting REVIEW with type:', CONFIG.FORM_TYPES.REVIEW);
+    console.log('Form data:', formData);
+
+    // Submit using the review service
     const result = await submitReview(formData);
     
     if (result.success) {
       console.log('✅ Review submitted successfully!');
-      console.log('📧 Email notification sent to admin');
-      console.log('📊 Data saved to Google Sheet');
+      console.log('📧 Review email should be sent to admin');
+      console.log('📧 Auto-reply should be sent to customer');
 
       // Create new review for display (unverified)
       const newReview = {
@@ -208,7 +212,6 @@ export default function Reviews() {
   const totalReviews = testimonials.length;
   const verifiedCount = testimonials.filter(t => t.verified).length;
 
-  // Calculate rating distribution
   const ratingDistribution = [5, 4, 3, 2, 1].map(star => {
     const count = testimonials.filter(t => t.rating === star).length;
     const percentage = (count / totalReviews) * 100;
@@ -310,7 +313,7 @@ export default function Reviews() {
         </div>
       </section>
 
-      {/* Write a Review Section - Two Column Layout like Contact page */}
+      {/* Write a Review Section - Two Column Layout */}
       <section className="write-review">
         <div className="container">
           <div className="contact-grid" style={{ alignItems: 'flex-start' }}>
