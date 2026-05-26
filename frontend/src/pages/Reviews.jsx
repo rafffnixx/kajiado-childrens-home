@@ -109,7 +109,6 @@ export default function Reviews() {
     setSubmissionError('');
     setIsSubmitting(true);
 
-    // Validation
     if (!formData.name || !formData.email || !formData.review) {
       setSubmissionError('Please fill in all required fields (Name, Email, and Review)');
       setIsSubmitting(false);
@@ -128,19 +127,9 @@ export default function Reviews() {
       return;
     }
 
-    // Log what we're submitting
-    console.log('📤 Submitting REVIEW with type:', CONFIG.FORM_TYPES.REVIEW);
-    console.log('Form data:', formData);
-
-    // Submit using the review service
     const result = await submitReview(formData);
     
     if (result.success) {
-      console.log('✅ Review submitted successfully!');
-      console.log('📧 Review email should be sent to admin');
-      console.log('📧 Auto-reply should be sent to customer');
-
-      // Create new review for display (unverified)
       const newReview = {
         id: testimonials.length + 1,
         name: formData.name,
@@ -157,7 +146,6 @@ export default function Reviews() {
       setTestimonials([newReview, ...testimonials]);
       setSubmitted(true);
       
-      // Reset form
       setFormData({
         name: '',
         email: '',
@@ -170,9 +158,7 @@ export default function Reviews() {
       });
 
       setTimeout(() => setSubmitted(false), 5000);
-      
     } else {
-      console.error('❌ Submission error:', result.error);
       setSubmissionError('There was an error submitting your review. Please try again or contact us directly.');
     }
     
@@ -227,7 +213,7 @@ export default function Reviews() {
         </div>
       </section>
 
-      {/* Ratings Summary Section */}
+      {/* Ratings Summary - Full Width at Top */}
       <section className="ratings-summary">
         <div className="container">
           <div className="summary-card">
@@ -271,52 +257,10 @@ export default function Reviews() {
         </div>
       </section>
 
-      {/* Testimonials Grid */}
-      <section className="testimonials-grid-section">
-        <div className="container">
-          <div className="testimonials-grid">
-            {filteredTestimonials.map(testimonial => (
-              <div className="testimonial-card" key={testimonial.id}>
-                <div className="testimonial-header">
-                  <div className="client-info">
-                    <div className="client-image">
-                      <img src={testimonial.image} alt={testimonial.name} />
-                    </div>
-                    <div>
-                      <h3>{testimonial.name}</h3>
-                      <p className="company">{testimonial.company}</p>
-                      <p className="position">{testimonial.position}</p>
-                    </div>
-                  </div>
-                  <div className="rating">
-                    {renderStars(testimonial.rating)}
-                  </div>
-                </div>
-                <div className="testimonial-content">
-                  <i className="fas fa-quote-left"></i>
-                  <p>"{testimonial.content}"</p>
-                </div>
-                <div className="testimonial-footer">
-                  <div className="footer-left">
-                    <span className="service-tag">{testimonial.service}</span>
-                    {testimonial.verified && (
-                      <span className="verified-tag">
-                        <i className="fas fa-check-circle"></i> Verified
-                      </span>
-                    )}
-                  </div>
-                  <span className="date">{new Date(testimonial.date).toLocaleDateString()}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Write a Review Section - Two Column Layout */}
+      {/* Two Column Layout: Form on Right, Info on Left */}
       <section className="write-review">
         <div className="container">
-          <div className="contact-grid" style={{ alignItems: 'flex-start' }}>
+          <div className="contact-grid" style={{ alignItems: 'flex-start', marginBottom: '60px' }}>
             {/* Left Column - Information */}
             <div className="contact-info">
               <h3><i className="fas fa-pen-alt"></i> Share Your Feedback</h3>
@@ -484,7 +428,7 @@ export default function Reviews() {
                   <textarea 
                     id="review"
                     name="review" 
-                    rows="5" 
+                    rows="4" 
                     value={formData.review} 
                     onChange={handleInputChange}
                     placeholder="Tell us about your experience with M.K GATHU Financial Consulting..."
@@ -524,6 +468,52 @@ export default function Reviews() {
                 <p><i className="fas fa-lock"></i> Your information is secure and will not be shared with third parties.</p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Grid - Below the form */}
+      <section className="testimonials-grid-section">
+        <div className="container">
+          <div className="section-header" style={{ marginBottom: '40px' }}>
+            <h2 className="section-title">What Our <span>Clients Say</span></h2>
+            <p className="section-subtitle">Real stories from businesses we've helped transform</p>
+          </div>
+          <div className="testimonials-grid">
+            {filteredTestimonials.map(testimonial => (
+              <div className="testimonial-card" key={testimonial.id}>
+                <div className="testimonial-header">
+                  <div className="client-info">
+                    <div className="client-image">
+                      <img src={testimonial.image} alt={testimonial.name} />
+                    </div>
+                    <div>
+                      <h3>{testimonial.name}</h3>
+                      <p className="company">{testimonial.company}</p>
+                      <p className="position">{testimonial.position}</p>
+                    </div>
+                  </div>
+                  <div className="rating">
+                    {renderStars(testimonial.rating)}
+                  </div>
+                </div>
+                <div className="testimonial-content">
+                  <i className="fas fa-quote-left"></i>
+                  <p>"{testimonial.content}"</p>
+                </div>
+                <div className="testimonial-footer">
+                  <div className="footer-left">
+                    <span className="service-tag">{testimonial.service}</span>
+                    {testimonial.verified && (
+                      <span className="verified-tag">
+                        <i className="fas fa-check-circle"></i> Verified
+                      </span>
+                    )}
+                  </div>
+                  <span className="date">{new Date(testimonial.date).toLocaleDateString()}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
