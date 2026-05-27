@@ -53,6 +53,9 @@ export default function Home() {
         path="/"
       />
       
+      {/* Screen-reader-only H1 for SEO - visible to search engines but not users */}
+      <h1 className="sr-only">M.K GATHU Financial Consulting - Premier Financial Management in Kenya</h1>
+      
       <div className="home-page">
         {/* Hero Section */}
         <section id="home" className="hero-section">
