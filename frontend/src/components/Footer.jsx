@@ -154,6 +154,16 @@ export default function Footer() {
             </div>
           </div>
         </div>
+
+        {/* Developer Credit */}
+        <div className="footer-developer">
+          <p>
+            Developed by <strong>RAFFCODES IT SOLUTIONS</strong> | 
+            <a href="https://raffcodes.vercel.app" target="_blank" rel="noopener noreferrer">
+              raffcodes.vercel.app
+            </a>
+          </p>
+        </div>
       </div>
 
       {/* WhatsApp Chat Button */}

@@ -15,7 +15,7 @@ export default function About() {
           <div className="about-flex">
             <div className="about-text">
               <h2>Who We Are</h2>
-              <p>We are a premier financial consulting firm based in Nairobi, Kenya, dedicated to empowering businesses with clarity, control, and growth. With deep expertise in local regulations and global best practices, we offer end-to-end financial management — from business registration and KRA compliance to daily finance operations and profitability advisory.</p>
+              <p>We are a premier financial consulting firm based in Nairobi, Kenya, dedicated to empowering businesses with clarity, control, and growth. With deep expertise in local regulations and global best practices, we offer end-to-end financial management from business registration and KRA compliance to daily finance operations and profitability advisory.</p>
               
               <h2>Our Mission</h2>
               <p>To provide gold-standard financial consulting that transforms Kenyan businesses from registration to profitability through expert guidance, compliance assurance, and strategic advisory.</p>

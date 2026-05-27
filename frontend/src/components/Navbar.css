@@ -42,7 +42,7 @@
 }
 
 .logo-image {
-  height: 90px;
+  height: 80px;
   width: auto;
   transition: all 0.3s ease;
   object-fit: contain;
@@ -70,7 +70,7 @@
 }
 
 .logo-text p {
-  font-size: 0.55rem;
+  font-size: 0.88rem;
   letter-spacing: 1.5px;
   color: #B28B2C;
   margin: 0;
@@ -240,7 +240,7 @@
 }
 
 .mobile-logo-text p {
-  font-size: 0.45rem;
+  font-size: 0.88rem;
   letter-spacing: 1px;
   color: #B28B2C;
   margin: 0;
@@ -457,11 +457,11 @@ body {
   }
 
   .logo-image {
-    height: 30px;
+    height: 35px;
   }
   
   .navbar.scrolled .logo-image {
-    height: 28px;
+    height: 35px;
   }
   
   .logo-text h1 {
@@ -469,7 +469,7 @@ body {
   }
   
   .logo-text p {
-    font-size: 0.45rem;
+    font-size: 0.77rem;
   }
 
   .menu-toggle {
@@ -494,7 +494,7 @@ body {
   }
   
   .mobile-logo-text p {
-    font-size: 0.4rem;
+    font-size: 0.8rem;
   }
 
   .mobile-nav-links a {

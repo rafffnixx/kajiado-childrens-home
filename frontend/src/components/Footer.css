@@ -46,7 +46,7 @@
 }
 
 .footer-logo-text p {
-  font-size: 0.55rem;
+  font-size: 0.99rem;
   letter-spacing: 1.5px;
   color: #B28B2C;
   margin: 0;
@@ -362,7 +362,7 @@
   }
 
   .footer-logo-text p {
-    font-size: 0.45rem;
+    font-size: 0.66rem;
   }
 
   .footer-description {
@@ -405,6 +405,49 @@
   .footer-copyright p {
     font-size: 0.7rem;
   }
+
+  /* Developer Credit Section */
+.footer-developer {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-developer p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.footer-developer strong {
+  color: var(--gold-primary);
+  font-weight: 600;
+}
+
+.footer-developer a {
+  color: var(--gold-primary);
+  text-decoration: none;
+  transition: opacity 0.2s;
+  margin-left: 5px;
+}
+
+.footer-developer a:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-developer {
+    margin-top: 20px;
+    padding-top: 15px;
+  }
+  
+  .footer-developer p {
+    font-size: 0.7rem;
+  }
+}
   
   .whatsapp-chat {
     bottom: 16px;
