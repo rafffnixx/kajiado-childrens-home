@@ -1,19 +1,20 @@
 // src/config.js
 const CONFIG = {
-  // Updated Google Apps Script URL
-  GOOGLE_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbx7gFevdQSyP-sQ9FSGV6ZhTKbq8biuYvLpGMxNh62rSrGnq-93fq_m6CXnEAX_Evk/exec",
-  
-  COMPANY_NAME: "M.K GATHU Financial Consulting",
-  COMPANY_PHONE: "+254 762 610 912",
-  COMPANY_EMAIL: "gathukamau23@gmail.com",
-  COMPANY_ADDRESS: "Westlands, Nairobi, Kenya",
-  COMPANY_WEBSITE: "https://www.mkgathuconsulting.co.ke",
+  ORG_NAME: "Kajiado Children's Home",
+  ORG_SHORT_NAME: "KCH",
+  ORG_TAGLINE: "Providing Hope, Care & Education",
+  ORG_PHONE: "+254 700 123 456",
+  ORG_EMAIL: "info@kajiadochildrenhome.org",
+  ORG_ADDRESS: "Kajiado Town, Kajiado County, Kenya",
+  ORG_WEBSITE: "https://kajiado-childrens-home.vercel.app",
   
   ADMIN_EMAIL: "rafayellmwong4325@gmail.com",
   
-  FORM_TYPES: {
-    CONTACT: "contact",
-    REVIEW: "review"
+  SOCIAL: {
+    FACEBOOK: "https://facebook.com/kajiadochildrenshome",
+    TWITTER: "https://twitter.com/kajiadochildren",
+    INSTAGRAM: "https://instagram.com/kajiadochildrenshome",
+    WHATSAPP: "https://wa.me/254700123456"
   }
 };
 

@@ -1,12 +1,12 @@
 {
-  "name": "mk-gathu-financial-consulting",
+  "name": "kajiado-childrens-home",
   "version": "1.0.0",
   "private": true,
-  "description": "M.K GATHU Financial Consulting - Premier Financial Management in Kenya",
-  "author": "M.K GATHU Financial Consulting",
-  "homepage": "https://www.mkgathuconsulting.co.ke",
+  "description": "Kajiado Children's Home - Providing hope, care, and education to vulnerable children in Kajiado, Kenya",
+  "author": "Kajiado Children's Home",
+  "homepage": "https://www.kajiadochildrenhome.org",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.5.1",
+    "@fortawesome/fontawesome-free": "^6.7.2",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",

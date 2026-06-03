@@ -4,43 +4,50 @@ import { HelmetProvider } from 'react-helmet-async';
 import './App.css';
 import './pages/styles.css';
 
-// Import all pages
+// Import all pages for Kajiado Children's Home
 import Home from './pages/Home';
 import About from './pages/About';
-import Services from './pages/Services';
+import DonorsPartners from './pages/DonorsPartners';
+import GetInvolved from './pages/GetInvolved';
+import Events from './pages/Events';
+import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
-import Portfolio from './pages/Portfolio';
-import Reviews from './pages/Reviews';
-import ServiceDetail from './pages/ServiceDetail';
+import Donate from './pages/Donate';
+import NotFound from './pages/NotFound';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
-import NotFound from './pages/NotFound';
-
 
 // Import components
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import ImagePreloader from './components/ImagePreloader';
 
 function App() {
   return (
     <HelmetProvider>
-      <Router>
+      <Router
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+      >
         <ScrollToTop />
+        <ImagePreloader />
         <div className="App">
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/service/:id" element={<ServiceDetail />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/reviews" element={<Reviews />} />
+            <Route path="/donors-partners" element={<DonorsPartners />} />
+            <Route path="/get-involved" element={<GetInvolved />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/gallery" element={<Gallery />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/donate" element={<Donate />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="*" element={<NotFound />} />
-
           </Routes>
           <Footer />
         </div>

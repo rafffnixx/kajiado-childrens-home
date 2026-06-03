@@ -1,276 +1,353 @@
-import React, { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 
 export default function Home() {
-  const navigate = useNavigate();
+  const [stats, setStats] = useState({
+    children: 0,
+    volunteers: 0,
+    partners: 0,
+    years: 0
+  });
 
+  const [currentHero, setCurrentHero] = useState(0);
+  const [currentAboutImage, setCurrentAboutImage] = useState(0);
+  const [isVisible, setIsVisible] = useState({});
+  const statsRef = useRef(null);
+  const programsRef = useRef(null);
+  const aboutRef = useRef(null);
+
+  const heroMessages = [
+    {
+      title: "Kajiado Children's Home",
+      subtitle: "Providing hope for the vulnerable, one child at a time",
+      description: "Transforming lives through love, education, and faith since 1997",
+      bgImage: "/images/hero/hero-bg.jpg"
+    },
+    {
+      title: "Every Child Deserves a Chance",
+      subtitle: "Help us provide shelter, food, and education",
+      description: "Your support changes lives forever",
+      bgImage: "/images/hero/hero-bg2.jpg"
+    },
+    {
+      title: "Building Bright Futures",
+      subtitle: "Together we can break the cycle of poverty",
+      description: "Join us in making a difference today",
+      bgImage: "/images/hero/hero-bg3.jpg"
+    },
+    {
+      title: "Hope Starts Here",
+      subtitle: "One child, one dream, one future at a time",
+      description: "Be part of their journey to success",
+      bgImage: "/images/hero/hero-bg4.jpg"
+    }
+  ];
+
+  const aboutImages = [
+    { src: "/images/about/kajiado-home.jpg", alt: "Kajiado Children's Home", caption: "Our Home" },
+    { src: "/images/children/happy-children.jpg", alt: "Happy Children", caption: "Happy Children" },
+    { src: "/images/about/founder.jpg", alt: "Founder", caption: "Our Founder" },
+    { src: "/images/staff/staff1.jpg", alt: "Staff", caption: "Dedicated Staff" }
+  ];
+
+  const programs = [
+    { id: 'education', icon: 'fas fa-book', title: 'Education Program', desc: 'Quality education for every child, from primary through vocational training.' },
+    { id: 'healthcare', icon: 'fas fa-heartbeat', title: 'Healthcare Program', desc: 'Regular medical checkups, nutrition, and healthcare for all children.' },
+    { id: 'shelter', icon: 'fas fa-home', title: 'Shelter & Care', desc: 'Safe, loving home environment with proper care and support.' },
+    { id: 'mentorship', icon: 'fas fa-users', title: 'Mentorship', desc: 'Guidance and mentorship to help children build better futures.' }
+  ];
+
+  // Intersection Observer for scroll animations
   useEffect(() => {
-    // Smooth scroll for anchor links
-    const handleAnchorClick = (e) => {
-      const href = e.currentTarget.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        e.preventDefault();
-        const element = document.querySelector(href);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }
-    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible((prev) => ({ ...prev, [entry.target.id]: true }));
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', handleAnchorClick);
-    });
+    if (statsRef.current) observer.observe(statsRef.current);
+    if (programsRef.current) observer.observe(programsRef.current);
+    if (aboutRef.current) observer.observe(aboutRef.current);
 
-    return () => {
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.removeEventListener('click', handleAnchorClick);
-      });
-    };
+    return () => observer.disconnect();
   }, []);
 
-  const handleServiceClick = (serviceId) => {
-    navigate(`/service/${serviceId}`);
-    window.scrollTo(0, 0);
-  };
+  // Animated counter effect
+  useEffect(() => {
+    const counters = [
+      { key: 'children', target: 150, duration: 2000 },
+      { key: 'volunteers', target: 50, duration: 2000 },
+      { key: 'partners', target: 20, duration: 2000 },
+      { key: 'years', target: 27, duration: 1500 }
+    ];
 
-  const services = [
-    { id: 'business-startup', icon: 'fas fa-rocket', title: 'Business Start-Up Support', desc: 'Business registration, permits, licensing, and structuring for new ventures in Kenya.' },
-    { id: 'daily-money-management', icon: 'fas fa-wallet', title: 'Daily Money Management', desc: 'Real-time cash flow tracking, expense monitoring, and operational finance oversight.' },
-    { id: 'debt-tracking', icon: 'fas fa-credit-card', title: 'Payments & Debt Tracking', desc: 'Automated invoicing, accounts receivable, aging reports, and debt recovery strategies.' },
-    { id: 'payroll', icon: 'fas fa-users', title: 'Payroll Services', desc: 'Payroll processing, statutory deductions, payslips, NSSF, NHIF, and leave management.' },
-    { id: 'tax-compliance', icon: 'fas fa-file-invoice', title: 'Tax & KRA Compliance', desc: 'VAT, withholding tax, income tax filing, KRA PIN updates, and audit support.' },
-    { id: 'financial-reports', icon: 'fas fa-chart-pie', title: 'Financial Reports', desc: 'Profit & loss, balance sheets, management accounts, and insightful dashboards.' },
-    { id: 'business-advisory', icon: 'fas fa-handshake', title: 'Business Advisory', desc: 'Growth strategies, pricing guidance, financial forecasting & investment readiness.' },
-    { id: 'kra-compliance-plus', icon: 'fas fa-shield-alt', title: 'KRA Compliance Plus', desc: 'ETR, iTax support, tax health checks and representation before KRA.' }
-  ];
+    counters.forEach(counter => {
+      const steps = 60;
+      const increment = counter.target / steps;
+      let current = 0;
+      const interval = setInterval(() => {
+        current += increment;
+        if (current >= counter.target) {
+          setStats(prev => ({ ...prev, [counter.key]: counter.target }));
+          clearInterval(interval);
+        } else {
+          setStats(prev => ({ ...prev, [counter.key]: Math.floor(current) }));
+        }
+      }, counter.duration / steps);
+    });
+  }, []);
+
+  // Rotate hero message every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentHero((prev) => (prev + 1) % heroMessages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [heroMessages.length]);
+
+  // Rotate about images every 8 seconds (slower)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentAboutImage((prev) => (prev + 1) % aboutImages.length);
+    }, 8000);
+    return () => clearInterval(interval);
+  }, [aboutImages.length]);
 
   return (
     <>
       <SEO 
-        title="Home - Premier Financial Consulting in Kenya"
-        description="M.K GATHU Financial Consulting offers expert business registration, KRA compliance, payroll, tax advisory, and debt tracking services. Trusted by 500+ Kenyan businesses. Free consultation available."
+        title="Kajiado Children's Home - Providing Hope & Care to Vulnerable Children"
+        description="Kajiado Children's Home provides shelter, education, healthcare, and love to orphaned and vulnerable children in Kajiado, Kenya. Support us through donations, sponsorship, or volunteering."
         path="/"
       />
       
-      {/* Screen-reader-only H1 for SEO - visible to search engines but not users */}
-      <h1 className="sr-only">M.K GATHU Financial Consulting - Premier Financial Management in Kenya</h1>
-      
       <div className="home-page">
-        {/* Hero Section */}
-        <section id="home" className="hero-section">
-          <div className="hero-content">
-            <div className="hero-tagline">
-              <i className="fas fa-chart-line"></i> Trusted by Kenyan Enterprises
+        {/* Hero Section with Smooth Crossfade */}
+        <div className="hero-slider">
+          {heroMessages.map((message, index) => (
+            <div
+              key={index}
+              className={`hero-slide ${currentHero === index ? 'active' : ''}`}
+            >
+              <div 
+                className="hero-bg-image"
+                style={{ backgroundImage: `url(${message.bgImage})` }}
+              >
+                <div className="hero-overlay"></div>
+              </div>
+              <div className="hero-content-wrapper">
+                <div className="container">
+                  <div className="hero-text">
+                    <h1 className="hero-title">{message.title}</h1>
+                    <p className="hero-subtitle">{message.subtitle}</p>
+                    <p className="hero-description">{message.description}</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <h1>From Registration to <span>Profitability</span> – We Handle Your Finances.</h1>
-            <p className="hero-desc">Strategic financial management for startups, SMEs, and corporations. KRA compliance, daily cash flow, payroll, and advisory all under one roof.</p>
-            <div className="hero-buttons">
-              <Link to="/contact" className="btn-gold">
-                <i className="fas fa-calendar-check"></i> Book Consultation
-              </Link>
-              <Link to="/services" className="btn-outline">
-                Explore Services →
-              </Link>
-            </div>
-            <div className="hero-stats">
-              <div><i className="fas fa-building"></i> 500+ Businesses</div>
-              <div><i className="fas fa-file-invoice-dollar"></i> 98% KRA Compliance</div>
-              <div><i className="fas fa-smile"></i> 100% Client Satisfaction</div>
+          ))}
+          
+          {/* Hero Dots Indicator */}
+          <div className="hero-dots">
+            {heroMessages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentHero(index)}
+                className={`hero-dot ${currentHero === index ? 'active' : ''}`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Mission Statement */}
+        <div className="mission-statement">
+          <div className="container">
+            <div className="mission-content">
+              <h2>Our Mission</h2>
+              <p>
+                To ensure every child receives <span className="highlight">love</span>, 
+                a <span className="highlight">full stomach</span>, 
+                <span className="highlight"> quality education</span>, 
+                <span className="highlight"> spiritual nourishment</span>, 
+                and <span className="highlight">hope for a better future</span>.
+              </p>
             </div>
           </div>
-        </section>
+        </div>
 
-        {/* Trust Badges */}
-        <div className="trust-badges">
+        {/* Stats Counter Section */}
+        <div 
+          ref={statsRef}
+          id="stats"
+          className={`stats-counter-section ${isVisible.stats ? 'visible' : ''}`}
+        >
           <div className="container">
-            <div className="badges-grid">
-              <div className="badge-item">
-                <i className="fas fa-trophy"></i>
-                <span>Award Winning Service</span>
+            <div className="stats-grid">
+              <div className="stat-card">
+                <i className="fas fa-child"></i>
+                <h3>{stats.children}+</h3>
+                <p>Children Cared For</p>
               </div>
-              <div className="badge-item">
-                <i className="fas fa-shield-alt"></i>
-                <span>Fully Insured</span>
+              <div className="stat-card">
+                <i className="fas fa-hands-helping"></i>
+                <h3>{stats.volunteers}+</h3>
+                <p>Active Volunteers</p>
               </div>
-              <div className="badge-item">
-                <i className="fas fa-certificate"></i>
-                <span>Certified Experts</span>
-              </div>
-              <div className="badge-item">
+              <div className="stat-card">
                 <i className="fas fa-handshake"></i>
-                <span>100% Confidential</span>
+                <h3>{stats.partners}+</h3>
+                <p>Partner Organizations</p>
+              </div>
+              <div className="stat-card">
+                <i className="fas fa-calendar-alt"></i>
+                <h3>{stats.years}+</h3>
+                <p>Years of Service</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Services Section */}
-        <section id="services" className="services-section">
+        {/* About Section with Rotating Image Slider */}
+        <div 
+          ref={aboutRef}
+          id="about"
+          className={`about-preview ${isVisible.about ? 'visible' : ''}`}
+        >
+          <div className="container">
+            <div className="about-flex">
+              <div className="about-text">
+                <h2>About <span>Kajiado Children's Home</span></h2>
+                <p>Kajiado Children's Home (KCH) provides a safe and loving environment for abused, abandoned, and orphaned children who have no place to go. Since <strong>1997</strong>, KCH has supported hundreds of children by offering shelter, care, and opportunities for a better future.</p>
+                <p>We work closely with Kenya Child Services to support children lacking parental care and basic needs, whether for short-term or long-term care.</p>
+                <Link to="/about" className="btn-outline">
+                  Read Our Story <i className="fas fa-arrow-right"></i>
+                </Link>
+              </div>
+              <div className="about-image-slider">
+                {aboutImages.map((image, index) => (
+                  <div
+                    key={index}
+                    className={`about-slide ${currentAboutImage === index ? 'active' : ''}`}
+                  >
+                    <img 
+                      src={image.src}
+                      alt={image.alt}
+                      loading="lazy"
+                      onError={(e) => e.target.src = 'https://placehold.co/500x400/e2e8f0/3b82f6?text=' + image.alt}
+                    />
+                    <div className="about-slide-caption">{image.caption}</div>
+                  </div>
+                ))}
+                
+                {/* About Image Dots */}
+                <div className="about-image-dots">
+                  {aboutImages.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentAboutImage(index)}
+                      className={`about-dot ${currentAboutImage === index ? 'active' : ''}`}
+                      aria-label={`View image ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Programs Section */}
+        <div 
+          ref={programsRef}
+          id="programs"
+          className={`programs-section ${isVisible.programs ? 'visible' : ''}`}
+        >
           <div className="container">
             <div className="section-header">
-              <h2 className="section-title">Our <span>Core Services</span></h2>
-              <p className="section-subtitle">Comprehensive financial solutions tailored for Kenyan businesses from startup to profitability.</p>
+              <h2 className="section-title">Our <span>Programs</span></h2>
+              <p className="section-subtitle">Comprehensive care and support for every child's development</p>
             </div>
-            <div className="services-grid">
-              {services.map((service) => (
-                <div 
-                  key={service.id}
-                  className="service-card clickable" 
-                  onClick={() => handleServiceClick(service.id)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyPress={(e) => {
-                    if (e.key === 'Enter') handleServiceClick(service.id);
-                  }}
-                >
-                  <div className="service-icon"><i className={service.icon}></i></div>
-                  <h3>{service.title}</h3>
-                  <p>{service.desc}</p>
-                  <div className="service-link">Learn More <i className="fas fa-arrow-right"></i></div>
+            <div className="programs-grid">
+              {programs.map((program) => (
+                <div key={program.id} className="program-card">
+                  <div className="program-icon"><i className={program.icon}></i></div>
+                  <h3>{program.title}</h3>
+                  <p>{program.desc}</p>
+                  <Link to="/get-involved" className="program-link">
+                    Support This Program <i className="fas fa-arrow-right"></i>
+                  </Link>
                 </div>
               ))}
             </div>
           </div>
-        </section>
+        </div>
 
-        {/* About Us Preview Section */}
-        <section id="about" className="about-preview">
-          <div className="container">
-            <div className="about-flex">
-              <div className="about-text">
-                <h2>About <span>M.K GATHU</span></h2>
-                <p>We are a premier financial consulting firm based in Nairobi, Kenya, dedicated to empowering businesses with clarity, control, and growth. With deep expertise in local regulations and global best practices, we offer end-to-end financial management, from business registration and KRA compliance to daily finance operations and profitability advisory.</p>
-                <p>Our team of experienced financial professionals brings years of combined experience across multiple industries, ensuring that your business receives the highest quality of service and strategic guidance.</p>
-                <Link to="/about" className="btn-outline">Learn More About Us <i className="fas fa-arrow-right"></i></Link>
-              </div>
-              <div className="about-img">
-                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&q=80" alt="Financial consultant team" loading="lazy" />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Why Choose Us Section */}
-        <section className="why-choose-us">
+        {/* Partners Section */}
+        <div className="partners-section">
           <div className="container">
             <div className="section-header">
-              <h2 className="section-title">Why <span>Choose Us</span></h2>
-              <p className="section-subtitle">What makes M.K GATHU the trusted financial partner for Kenyan businesses</p>
+              <h2 className="section-title">Our <span>Partners</span></h2>
+              <p className="section-subtitle">Helping children from their villages through education, mentorship, and community outreach</p>
             </div>
-            <div className="features-grid">
-              <div className="feature-card">
-                <div className="feature-icon"><i className="fas fa-certificate"></i></div>
-                <h3>Certified Experts</h3>
-                <p>Fully certified financial professionals with extensive experience in Kenyan tax laws and regulations.</p>
+            <div className="partners-grid">
+              <div className="partner-card">
+                <div className="partner-icon">🌟</div>
+                <h3>Hope for Kajiado</h3>
+                <p>Sustaining KCH through fundraising and support</p>
               </div>
-              <div className="feature-card">
-                <div className="feature-icon"><i className="fas fa-clock"></i></div>
-                <h3>Timely Delivery</h3>
-                <p>We guarantee on-time filing and reporting, helping you avoid KRA penalties and late fees.</p>
+              <div className="partner-card">
+                <div className="partner-icon">📚</div>
+                <h3>Valley School of Excellence</h3>
+                <p>Quality education for KCH and community</p>
               </div>
-              <div className="feature-card">
-                <div className="feature-icon"><i className="fas fa-shield-alt"></i></div>
-                <h3>100% Confidential</h3>
-                <p>Your financial data is safe with us. We maintain strict confidentiality and data protection standards.</p>
+              <div className="partner-card">
+                <div className="partner-icon">🎓</div>
+                <h3>Bright Horizons Project</h3>
+                <p>Mentorship and career training</p>
               </div>
-              <div className="feature-card">
-                <div className="feature-icon"><i className="fas fa-headset"></i></div>
-                <h3>24/7 Support</h3>
-                <p>Round-the-clock support for urgent financial matters and KRA inquiries.</p>
-              </div>
-              <div className="feature-card">
-                <div className="feature-icon"><i className="fas fa-chart-line"></i></div>
-                <h3>Proven Results</h3>
-                <p>98% KRA compliance rate and 40% average profit increase for our clients.</p>
-              </div>
-              <div className="feature-card">
-                <div className="feature-icon"><i className="fas fa-hand-holding-usd"></i></div>
-                <h3>Affordable Pricing</h3>
-                <p>Competitive rates tailored for Kenyan SMEs and startups.</p>
+              <div className="partner-card">
+                <div className="partner-icon">🍲</div>
+                <h3>Namanga Hope Center</h3>
+                <p>Outreach to vulnerable communities</p>
               </div>
             </div>
           </div>
-        </section>
+        </div>
 
-        {/* KRA & Tax Compliance Section */}
-        <section className="tax-section">
+        {/* Testimonial Section */}
+        <div className="testimonial-section">
           <div className="container">
-            <div className="section-header">
-              <h2 className="section-title">KRA & Tax <span>Compliance Simplified</span></h2>
-              <p className="section-subtitle">We take the stress out of Kenya Revenue Authority filings. Stay compliant and avoid penalties.</p>
-            </div>
-            <div className="tax-showcase">
-              <div className="tax-content">
-                <ul className="list-check">
-                  <li><i className="fas fa-check-circle"></i> VAT & Excise Returns Filing</li>
-                  <li><i className="fas fa-check-circle"></i> iTax troubleshooting & KRA PIN registration</li>
-                  <li><i className="fas fa-check-circle"></i> Tax Health Certificates & Compliance checks</li>
-                  <li><i className="fas fa-check-circle"></i> Monthly & annual filings with precision</li>
-                  <li><i className="fas fa-check-circle"></i> ETR machine installation and support</li>
-                  <li><i className="fas fa-check-circle"></i> KRA audit representation</li>
-                </ul>
-                <Link to="/contact" className="btn-gold">
-                  <i className="fas fa-file-signature"></i> Get KRA Support →
-                </Link>
-              </div>
-              <div className="tax-image">
-                <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=700&q=80" alt="KRA tax compliance" loading="lazy" />
-              </div>
+            <div className="testimonial-card">
+              <i className="fas fa-quote-left"></i>
+              <p>"Kajiado Children's Home gave me a second chance at life. Today, I'm a social worker helping children just like me."</p>
+              <h4>— Former KCH Student, Now Staff Member</h4>
             </div>
           </div>
-        </section>
+        </div>
 
-        {/* Testimonials Preview */}
-        <section className="testimonials-preview">
-          <div className="container">
-            <div className="section-header">
-              <h2 className="section-title">What Our <span>Clients Say</span></h2>
-              <p className="section-subtitle">Real stories from businesses we've helped transform</p>
-            </div>
-            <div className="testimonials-grid">
-              <div className="testimonial-card">
-                <i className="fas fa-quote-left"></i>
-                <p>"M.K GATHU transformed our financial records and ensured full KRA compliance. Our profitability soared within 6 months. Their attention to detail and proactive advice has been invaluable."</p>
-                <h4>— Njeri K., Startup Founder</h4>
-                <div className="rating">★★★★★</div>
-              </div>
-              <div className="testimonial-card">
-                <i className="fas fa-quote-left"></i>
-                <p>"Professional payroll & debt tracking services. Their advisory played a huge role in securing our business loan. I highly recommend their comprehensive financial management."</p>
-                <h4>— James M., Retail Chain MD</h4>
-                <div className="rating">★★★★★</div>
-              </div>
-              <div className="testimonial-card">
-                <i className="fas fa-quote-left"></i>
-                <p>"The team at M.K GATHU helped us navigate complex KRA requirements and set up proper accounting systems. Now we have clear financial visibility and peace of mind."</p>
-                <h4>— Dr. Sarah W., Healthcare CEO</h4>
-                <div className="rating">★★★★★</div>
-              </div>
-            </div>
-            <div className="view-all-link">
-              <Link to="/reviews" className="btn-outline">Read All Testimonials <i className="fas fa-arrow-right"></i></Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Call to Action Section */}
-        <section className="cta-section">
+        {/* CTA Section */}
+        <div className="cta-section">
           <div className="container">
             <div className="cta-content">
-              <h2>Ready to Transform Your Business Finances?</h2>
-              <p>Join over 500 Kenyan businesses that trust M.K GATHU for their financial management needs.</p>
+              <h2>Help Us Transform Lives</h2>
+              <p>Your donation, sponsorship, or volunteer time makes a direct impact on a child's future.</p>
               <div className="cta-buttons">
-                <Link to="/contact" className="btn-gold">
-                  <i className="fas fa-calendar-check"></i> Book Free Consultation
+                <Link to="/donate" className="btn-gold">
+                  <i className="fas fa-hand-holding-heart"></i> Donate Now
                 </Link>
-                <Link to="/services" className="btn-outline">
-                  <i className="fas fa-info-circle"></i> Learn More
+                <Link to="/contact" className="btn-outline">
+                  <i className="fas fa-envelope"></i> Contact Us
                 </Link>
               </div>
             </div>
           </div>
-        </section>
+        </div>
       </div>
     </>
   );

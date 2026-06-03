@@ -4,24 +4,24 @@ import './Footer.css';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const logoSrc = "/logo-white.png";
+  const logoSrc = "/logo.png";
 
   const quickLinks = [
     { path: '/', label: 'Home' },
-    { path: '/services', label: 'Services' },
-    { path: '/portfolio', label: 'Success Stories' },
-    { path: '/reviews', label: 'Testimonials' },
-    { path: '/about', label: 'About' },
+    { path: '/about', label: 'About Us' },
+    { path: '/donors-partners', label: 'Partners' },
+    { path: '/children', label: 'Sponsor a Child' },
+    { path: '/get-involved', label: 'Get Involved' },
+    { path: '/events', label: 'Events' },
+    { path: '/gallery', label: 'Gallery' },
     { path: '/contact', label: 'Contact' }
   ];
 
-  const services = [
-    { path: '/service/business-startup', label: 'Business Start-Up Support' },
-    { path: '/service/tax-compliance', label: 'Tax & KRA Compliance' },
-    { path: '/service/payroll', label: 'Payroll Services' },
-    { path: '/service/debt-tracking', label: 'Payments & Debt Tracking' },
-    { path: '/service/financial-reports', label: 'Financial Reports' },
-    { path: '/service/business-advisory', label: 'Business Advisory' }
+  const supportLinks = [
+    { path: '/donate', label: 'Make a Donation' },
+    { path: '/children', label: 'Sponsor a Child' },
+    { path: '/get-involved', label: 'Become a Volunteer' },
+    { path: '/donors-partners', label: 'Become a Partner' }
   ];
 
   const handleNavClick = () => {
@@ -32,35 +32,32 @@ export default function Footer() {
     <footer className="footer">
       <div className="container">
         <div className="footer-grid">
-          {/* About Column - Logo + Company Name + Description */}
+          {/* About Column */}
           <div className="footer-about">
             <div className="footer-logo">
-              <img src={logoSrc} alt="M.K GATHU Logo" className="footer-logo-image" />
+              <img src={logoSrc} alt="Kajiado Children's Home Logo" className="footer-logo-image" />
               <div className="footer-logo-text">
-                <h3>M.K GATHU</h3>
-                <p>FINANCIAL CONSULTING</p>
-                <p>• KENYA</p>
+                <h3>Kajiado Children's Home</h3>
+                <p>CARING FOR CHILDREN • KENYA</p>
               </div>
             </div>
             <p className="footer-description">
-              Premier financial consulting firm based in Nairobi, Kenya, dedicated to empowering 
-              businesses with clarity, control, and growth from registration to profitability.
+              Kajiado Children's Home provides a safe and loving environment for abused, abandoned, 
+              and orphaned children in Kajiado, Kenya. Since 1997, we have supported hundreds of children 
+              by offering shelter, care, and opportunities for a better future.
             </p>
             <div className="social-links">
-              <a href="https://wa.me/254762610912" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-                <i className="fab fa-whatsapp"></i>
-              </a>
               <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <i className="fab fa-facebook-f"></i>
-              </a>
-              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <i className="fab fa-linkedin-in"></i>
               </a>
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                 <i className="fab fa-twitter"></i>
               </a>
               <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <i className="fab fa-instagram"></i>
+              </a>
+              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <i className="fab fa-linkedin-in"></i>
               </a>
             </div>
           </div>
@@ -79,22 +76,17 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services Column */}
+          {/* Support Links Column */}
           <div className="footer-links-col">
-            <h4>Our Services</h4>
+            <h4>Get Involved</h4>
             <ul>
-              {services.map((service) => (
-                <li key={service.path}>
-                  <Link to={service.path} onClick={handleNavClick}>
-                    <i className="fas fa-chevron-right"></i> {service.label}
+              {supportLinks.map((link) => (
+                <li key={link.path}>
+                  <Link to={link.path} onClick={handleNavClick}>
+                    <i className="fas fa-chevron-right"></i> {link.label}
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link to="/services" onClick={handleNavClick}>
-                  <i className="fas fa-chevron-right"></i> View All Services
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -105,38 +97,34 @@ export default function Footer() {
               <li>
                 <i className="fas fa-map-marker-alt"></i>
                 <div>
-                  <strong></strong>
-                  <span>Westlands, Nairobi, Kenya</span>
+                  <span>Kajiado Town, Kajiado County, Kenya</span>
                 </div>
               </li>
               <li>
                 <i className="fas fa-phone"></i>
                 <div>
-                  <strong></strong>
-                  <a href="tel:+254762610912">+254 762 610 912</a>
+                  <a href="tel:+254700123456">+254 700 123 456</a>
                 </div>
               </li>
               <li>
                 <i className="fab fa-whatsapp"></i>
                 <div>
-                  <strong></strong>
-                  <a href="https://wa.me/254762610912">+254 762 610 912</a>
+                  <a href="https://wa.me/254700123456">+254 700 123 456 (WhatsApp)</a>
                 </div>
               </li>
               <li>
                 <i className="fas fa-envelope"></i>
                 <div>
-                  <strong></strong>
-                  <a href="mailto:gathukamau23@gmail.com">gathukamau23@gmail.com</a>
+                  <a href="mailto:info@kajiadochildrenhome.org">info@kajiadochildrenhome.org</a>
                 </div>
               </li>
               <li>
                 <i className="fas fa-clock"></i>
                 <div>
-                  <strong>Business Hours</strong>
-                  <span>Mon-Fri: 8:00AM – 5:00PM</span>
-                  <span>Sat: 9:00AM – 1:00PM</span>
-                  <span>Sun: Closed</span>
+                  <strong>Visiting Hours</strong>
+                  <span>Mon-Fri: 9:00AM – 5:00PM</span>
+                  <span>Sat: 10:00AM – 2:00PM</span>
+                  <span>Sun: Closed (By appointment)</span>
                 </div>
               </li>
             </ul>
@@ -146,7 +134,7 @@ export default function Footer() {
         <div className="footer-bottom">
           <div className="footer-bottom-content">
             <div className="footer-copyright">
-              <p>&copy; {currentYear} M.K GATHU Financial Consulting, Professional Financial Management in Kenya. All rights reserved.</p>
+              <p>&copy; {currentYear} Kajiado Children's Home. All rights reserved. Caring for vulnerable children in Kajiado, Kenya since 1997.</p>
             </div>
             <div className="footer-legal">
               <Link to="/terms" onClick={handleNavClick}>Terms of Service</Link>
@@ -159,7 +147,7 @@ export default function Footer() {
         {/* Developer Credit */}
         <div className="footer-developer">
           <p>
-            Developed by <strong>RAFFCODES IT SOLUTIONS</strong> | 
+            Website by <strong>RAFFCODES IT SOLUTIONS</strong> | 
             <a href="https://raffcodes.vercel.app" target="_blank" rel="noopener noreferrer">
               raffcodes.vercel.app
             </a>
@@ -169,7 +157,7 @@ export default function Footer() {
 
       {/* WhatsApp Chat Button */}
       <a 
-        href="https://wa.me/254762610912?text=Hello%20M.K%20GATHU%20Consulting%2C%20I%20need%20expert%20financial%20advice." 
+        href="https://wa.me/254700123456?text=Hello%20Kajiado%20Children%27s%20Home%2C%20I%20want%20to%20support%20your%20work" 
         className="whatsapp-chat"
         target="_blank" 
         rel="noopener noreferrer"

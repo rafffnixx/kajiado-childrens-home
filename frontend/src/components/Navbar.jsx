@@ -54,12 +54,14 @@ export default function Navbar() {
     return () => window.removeEventListener('keydown', handleEscKey);
   }, [isMenuOpen]);
 
+  // Navigation links - removed duplicate Get Involved from navLinks since it's now the CTA button
   const navLinks = [
     { path: '/', label: 'Home', icon: 'fas fa-home' },
-    { path: '/services', label: 'Services', icon: 'fas fa-briefcase' },
-    { path: '/portfolio', label: 'Portfolio', icon: 'fas fa-chart-line' },
-    { path: '/reviews', label: 'Reviews', icon: 'fas fa-star' },
-    { path: '/about', label: 'About', icon: 'fas fa-users' },
+    { path: '/about', label: 'About', icon: 'fas fa-heart' },
+    { path: '/donors-partners', label: 'Partners', icon: 'fas fa-handshake' },
+    { path: '/events', label: 'Events', icon: 'fas fa-calendar-alt' },
+    { path: '/gallery', label: 'Gallery', icon: 'fas fa-images' },
+    { path: '/contact', label: 'Contact', icon: 'fas fa-envelope' },
   ];
 
   const isActive = (path) => {
@@ -80,12 +82,12 @@ export default function Navbar() {
           <Link to="/" className="logo" onClick={() => handleNavClick('/')}>
             <img 
               src={logoSrc}
-              alt="M.K GATHU Financial Consulting Logo" 
+              alt="Kajiado Children's Home Logo" 
               className="logo-image"
             />
             <div className="logo-text">
-              <h1>M.K GATHU</h1>
-              <p>FINANCIAL CONSULTING • KENYA</p>
+              <h1>Kajiado Children's Home</h1>
+              <p>MAKING A DIFFERENCE ONE CHILD AT A TIME</p>
             </div>
           </Link>
 
@@ -98,6 +100,7 @@ export default function Navbar() {
             <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
           </button>
 
+          {/* Desktop Navigation */}
           <ul className="nav-links">
             {navLinks.map((link) => (
               <li key={link.path}>
@@ -112,8 +115,8 @@ export default function Navbar() {
               </li>
             ))}
             <li className="desktop-cta">
-              <Link to="/contact" className="btn-outline-small" onClick={() => handleNavClick('/contact')}>
-                <i className="fas fa-calendar-check"></i> Free Consultation
+              <Link to="/get-involved" className="btn-outline-small" onClick={() => handleNavClick('/get-involved')}>
+                <i className="fas fa-hands-helping"></i> Get Involved
               </Link>
             </li>
           </ul>
@@ -124,10 +127,10 @@ export default function Navbar() {
       <div className={`mobile-menu ${isMenuOpen ? 'active' : ''}`}>
         <div className="mobile-menu-header">
           <div className="mobile-logo">
-            <img src={logoSrc} alt="M.K GATHU Logo" className="mobile-logo-image" />
+            <img src={logoSrc} alt="Kajiado Children's Home Logo" className="mobile-logo-image" />
             <div className="mobile-logo-text">
-              <h3>M.K GATHU</h3>
-              <p>FINANCIAL CONSULTING • KENYA</p>
+              <h3>Kajiado Children's Home</h3>
+              <p>CARING FOR CHILDREN • KENYA</p>
             </div>
           </div>
           <button className="mobile-menu-close" onClick={closeMenu} aria-label="Close menu">
@@ -152,14 +155,14 @@ export default function Navbar() {
         </ul>
         
         <div className="mobile-menu-footer">
-          <Link to="/contact" className="btn-gold-mobile" onClick={() => handleNavClick('/contact')}>
-            <i className="fas fa-calendar-check"></i> Free Consultation
+          <Link to="/get-involved" className="btn-gold-mobile" onClick={() => handleNavClick('/get-involved')}>
+            <i className="fas fa-hands-helping"></i> Get Involved
           </Link>
           <div className="mobile-contact-info">
-            <a href="tel:+254762610912">
-              <i className="fas fa-phone"></i> +254 762 610 912
+            <a href="tel:+254700123456">
+              <i className="fas fa-phone"></i> +254 700 123 456
             </a>
-            <a href="mailto:gathukamau23@gmail.com">
+            <a href="mailto:info@kajiadochildrenhome.org">
               <i className="fas fa-envelope"></i> Email Us
             </a>
           </div>

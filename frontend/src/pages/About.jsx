@@ -1,154 +1,194 @@
 import React from 'react';
-import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
+import './styles.css';
 
 export default function About() {
+  const partners = [
+    { icon: "🌟", title: "Hope for Kajiado", desc: "Sustaining KCH through fundraising and support" },
+    { icon: "📚", title: "Valley School of Excellence", desc: "Quality education for KCH and community" },
+    { icon: "🎓", title: "Bright Horizons Project", desc: "Mentorship and career training" },
+    { icon: "🍲", title: "Namanga Hope Center", desc: "Outreach to vulnerable communities" }
+  ];
+
+  const services = [
+    { icon: "❤️", title: "Love & Support" },
+    { icon: "📚", title: "Quality Education" },
+    { icon: "🙏", title: "Spiritual Guidance" },
+    { icon: "⭐", title: "Hope for Future" }
+  ];
+
+  const staff = [
+    { name: "Ruth Mbugua", role: "Manager", image: "/images/staff/staff1.jpg" },
+    { name: "Simon Wainaina", role: "Director", image: "/images/staff/staff2.jpg" },
+    { name: "Mary Wanjiku", role: "Teacher", image: "/images/staff/staff3.jpg" },
+    { name: "James Kariuki", role: "Pastor", image: "/images/staff/staff4.jpg" }
+  ];
+
+  const values = [
+    { letter: "L", title: "Love & Compassion" },
+    { letter: "E", title: "Excellence" },
+    { letter: "C", title: "Community" },
+    { letter: "I", title: "Integrity" }
+  ];
+
   return (
     <>
       <SEO 
-        title="About Us - Premier Financial Consulting in Kenya"
-        description="M.K GATHU Financial Consulting: Expert financial advisors in Nairobi. We help Kenyan businesses with registration, KRA compliance, payroll, and growth strategies. Trusted by 500+ businesses."
+        title="About Us - Kajiado Children's Home"
+        description="Learn about Kajiado Children's Home's mission, vision, and the dedicated team transforming young lives in Kajiado, Kenya since 1997."
         path="/about"
       />
       
       <div className="about-page">
-        <section className="page-header">
+        {/* Hero Section with Background Image */}
+        <section className="about-hero">
+          <div className="hero-bg-container">
+            <div 
+              className="hero-bg-image-about"
+              style={{ backgroundImage: 'url("/images/hero/get-involved-hero.jpg")' }}
+            ></div>
+            <div className="hero-overlay-dark"></div>
+          </div>
           <div className="container">
-            <h1>About <span>M.K GATHU</span></h1>
-            <p>Kenya's trusted financial partner with a gold standard of service.</p>
+            <div className="hero-content-about">
+              <h1>About <span>Kajiado Children's Home</span></h1>
+              <p>Transforming young lives in Kajiado since 1997</p>
+            </div>
           </div>
         </section>
 
-        <section className="about-main">
+        {/* Story Section */}
+        <section className="about-story">
           <div className="container">
             <div className="about-flex">
               <div className="about-text">
-                <h2>Who We Are</h2>
-                <p>We are a premier financial consulting firm based in Nairobi, Kenya, dedicated to empowering businesses with clarity, control, and growth. With deep expertise in local regulations and global best practices, we offer end-to-end financial management from business registration and KRA compliance to daily finance operations and profitability advisory.</p>
-                
-                <h2>Our Mission</h2>
-                <p>To provide gold-standard financial consulting that transforms Kenyan businesses from registration to profitability through expert guidance, compliance assurance, and strategic advisory.</p>
-                
-                <h2>Our Vision</h2>
-                <p>To be Kenya's most trusted financial partner, recognized for driving business success through innovative financial solutions and unwavering commitment to client prosperity.</p>
-                
-                <div className="about-stats">
-                  <div className="stat-item">
-                    <span className="stat-number">500+</span>
-                    <span className="stat-label">Businesses Served</span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-number">98%</span>
-                    <span className="stat-label">KRA Compliance</span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-number">10+</span>
-                    <span className="stat-label">Years Experience</span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-number">100%</span>
-                    <span className="stat-label">Client Satisfaction</span>
-                  </div>
-                </div>
-                
-                <div className="about-contact">
-                  <p><i className="fas fa-map-marker-alt"></i> <strong>Location:</strong> Westlands, Nairobi, Kenya | Serving clients countrywide</p>
-                  <p><i className="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:gathukamau23@gmail.com">gathukamau23@gmail.com</a></p>
-                  <p><i className="fas fa-phone"></i> <strong>Phone:</strong> <a href="tel:+254762610912">+254 762 610 912</a></p>
-                  <p><i className="fab fa-whatsapp"></i> <strong>WhatsApp:</strong> <a href="https://wa.me/254762610912">+254 762 610 912</a></p>
-                </div>
-                
-                <div className="about-cta">
-                  <Link to="/contact" className="btn-gold">
-                    <i className="fas fa-calendar-check"></i> Book a Free Consultation
-                  </Link>
-                </div>
+                <h2>Our <span>Story</span></h2>
+                <p>Kajiado Children's Home (KCH) provides a safe and loving environment for abused, abandoned, and orphaned children who have no place to go. Since <strong>1997</strong>, KCH has supported hundreds of children by offering shelter, care, and opportunities for a better future.</p>
+                <p>What started as a small initiative has grown into a thriving community that currently cares for over 150 children, providing them with love, education, healthcare, and hope for a brighter future.</p>
+                <p>We work closely with Kenya Child Services to support children lacking parental care and basic needs, whether for short-term or long-term care. Our approach focuses on holistic development, ensuring every child receives not just basic needs but also emotional support, quality education, and skills for life.</p>
               </div>
-              
               <div className="about-img">
-                <img 
-                  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&q=80" 
-                  alt="Professional financial consultant team in Kenya" 
-                  loading="lazy" 
-                />
-                <img 
-                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80" 
-                  alt="Financial consulting and tax compliance services in Kenya" 
-                  loading="lazy" 
-                  style={{marginTop: '24px'}} 
-                />
+                <img src="/images/about/founder.jpg" alt="Kajiado Children's Home" loading="lazy" />
               </div>
             </div>
           </div>
         </section>
 
+        {/* Mission & Vision Section */}
+        <section className="mission-vision">
+          <div className="container">
+            <div className="mission-vision-grid">
+              <div className="mission-card">
+                <i className="fas fa-quote-left"></i>
+                <h3>Our Mission</h3>
+                <p>To ensure every child receives love, emotional support, nutritious food, medical care, quality education, and spiritual guidance breaking free from poverty to build a brighter future.</p>
+              </div>
+              <div className="vision-card">
+                <i className="fas fa-quote-left"></i>
+                <h3>Our Commitment</h3>
+                <p>100% of donations go directly to supporting children and programs. Operational costs are covered by a dedicated group of donors and volunteer board of directors.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Partners Section */}
+        <section className="partners-section">
+          <div className="container">
+            <div className="section-header">
+              <h2 className="section-title">Our <span>Partners</span></h2>
+              <p className="section-subtitle">Helping children from their villages through education, mentorship, and community outreach</p>
+            </div>
+            <div className="partners-grid">
+              {partners.map((partner, index) => (
+                <div className="partner-card" key={index}>
+                  <div className="partner-icon">{partner.icon}</div>
+                  <h3>{partner.title}</h3>
+                  <p>{partner.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* What We Provide Section */}
+        <section className="services-provided">
+          <div className="container">
+            <div className="section-header">
+              <h2 className="section-title">What We <span>Provide</span></h2>
+            </div>
+            <div className="services-grid">
+              {services.map((service, index) => (
+                <div className="service-card" key={index}>
+                  <div className="service-icon">{service.icon}</div>
+                  <h3>{service.title}</h3>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Staff Section */}
+        <section className="staff-section">
+          <div className="container">
+            <div className="section-header">
+              <h2 className="section-title">Our <span>Dedicated Team</span></h2>
+              <p className="section-subtitle">Meet the caring individuals who make our home a loving environment</p>
+            </div>
+            <div className="staff-grid">
+              {staff.map((member, index) => (
+                <div className="staff-card" key={index}>
+                  <img src={member.image} alt={member.name} loading="lazy" />
+                  <h3>{member.name}</h3>
+                  <p>{member.role}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Core Values Section */}
         <section className="values-section">
           <div className="container">
             <div className="section-header">
               <h2 className="section-title">Our <span>Core Values</span></h2>
-              <p className="section-subtitle">The principles that guide our service delivery</p>
             </div>
             <div className="values-grid">
-              <div className="value-card">
-                <i className="fas fa-gem"></i>
-                <h3>Integrity</h3>
-                <p>We operate with complete transparency and ethical standards in all client dealings.</p>
-              </div>
-              <div className="value-card">
-                <i className="fas fa-chart-line"></i>
-                <h3>Excellence</h3>
-                <p>We deliver gold-standard financial services that exceed client expectations.</p>
-              </div>
-              <div className="value-card">
-                <i className="fas fa-handshake"></i>
-                <h3>Partnership</h3>
-                <p>We work alongside our clients as dedicated partners in their growth journey.</p>
-              </div>
-              <div className="value-card">
-                <i className="fas fa-lightbulb"></i>
-                <h3>Innovation</h3>
-                <p>We leverage modern financial tools and strategies for optimal results.</p>
-              </div>
+              {values.map((value, index) => (
+                <div className="value-card" key={index}>
+                  <div className="value-letter">{value.letter}</div>
+                  <h3>{value.title}</h3>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        <section className="team-section">
+        {/* Impact Section */}
+        <section className="impact-section">
           <div className="container">
-            <div className="section-header">
-              <h2 className="section-title">Why <span>Choose Us</span></h2>
-              <p className="section-subtitle">What makes us different from other financial consulting firms</p>
+            <div className="impact-content">
+              <h2>Proven Impact</h2>
+              <p>Children who grow up at KCH go on to succeed in life and many return to mentor the next generation.</p>
+              <p className="impact-quote">Transforming lives, one child at a time.</p>
             </div>
-            <div className="features-grid">
-              <div className="feature-card">
-                <div className="feature-icon"><i className="fas fa-certificate"></i></div>
-                <h3>Certified Experts</h3>
-                <p>Fully certified financial professionals with extensive experience in Kenyan tax laws and regulations.</p>
-              </div>
-              <div className="feature-card">
-                <div className="feature-icon"><i className="fas fa-clock"></i></div>
-                <h3>Timely Delivery</h3>
-                <p>We guarantee on-time filing and reporting, helping you avoid KRA penalties and late fees.</p>
-              </div>
-              <div className="feature-card">
-                <div className="feature-icon"><i className="fas fa-shield-alt"></i></div>
-                <h3>100% Confidential</h3>
-                <p>Your financial data is safe with us. We maintain strict confidentiality and data protection standards.</p>
-              </div>
-              <div className="feature-card">
-                <div className="feature-icon"><i className="fas fa-headset"></i></div>
-                <h3>24/7 Support</h3>
-                <p>Round-the-clock support for urgent financial matters and KRA inquiries.</p>
-              </div>
-              <div className="feature-card">
-                <div className="feature-icon"><i className="fas fa-chart-line"></i></div>
-                <h3>Proven Results</h3>
-                <p>98% KRA compliance rate and 40% average profit increase for our clients.</p>
-              </div>
-              <div className="feature-card">
-                <div className="feature-icon"><i className="fas fa-hand-holding-usd"></i></div>
-                <h3>Affordable Pricing</h3>
-                <p>Competitive rates tailored for Kenyan SMEs and startups.</p>
+          </div>
+        </section>
+
+        {/* Call to Action */}
+        <section className="cta-section">
+          <div className="container">
+            <div className="cta-content">
+              <h2>Help Us Transform Lives</h2>
+              <p>Your support makes a direct impact on a child's future.</p>
+              <div className="cta-buttons">
+                <Link to="/donate" className="btn-gold">
+                  <i className="fas fa-hand-holding-heart"></i> Donate Now
+                </Link>
+                <Link to="/contact" className="btn-outline">
+                  <i className="fas fa-envelope"></i> Contact Us
+                </Link>
               </div>
             </div>
           </div>

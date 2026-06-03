@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Kajiado Children's Home",
+  "name": "Kajiado Children's Home - Hope & Care for Vulnerable Children",
+  "description": "Providing shelter, education, healthcare, and love to orphaned and vulnerable children in Kajiado, Kenya since 1997.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +21,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#3B82F6",
+  "background_color": "#030303"
 }
