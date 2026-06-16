@@ -1,21 +1,37 @@
-/* Navbar Styles for Kajiado Children's Home */
+/* Navbar Styles for kajiado Childrens Home */
 
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(3, 3, 3, 0.95);
+  background: var(--navbar-bg, rgba(3, 3, 3, 0.95));
   backdrop-filter: blur(10px);
   z-index: 1000;
   transition: all 0.3s ease;
   border-bottom: 1px solid transparent;
 }
 
-.navbar.scrolled {
+/* Light mode navbar */
+[data-theme="light"] .navbar {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .navbar.scrolled {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode navbar */
+[data-theme="dark"] .navbar {
+  background: rgba(3, 3, 3, 0.95);
+}
+
+[data-theme="dark"] .navbar.scrolled {
   background: rgba(3, 3, 3, 0.98);
-  border-bottom-color: rgba(59, 130, 246, 0.2);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border-bottom-color: rgba(59, 130, 246, 0.2);
 }
 
 .nav-container {
@@ -50,7 +66,7 @@
   font-size: 1.2rem;
   font-weight: 700;
   margin: 0;
-  background: linear-gradient(135deg, #fff, var(--primary-color, #3B82F6));
+  background: linear-gradient(135deg, var(--text-color, #fff), var(--primary-color, #3B82F6));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -82,7 +98,7 @@
   align-items: center;
   gap: 8px;
   padding: 10px 16px;
-  color: #e8e8e8;
+  color: var(--text-color, #e8e8e8);
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
@@ -148,6 +164,35 @@
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
+/* Nav Actions Container */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: var(--primary-color, #3B82F6);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--primary-color, #3B82F6);
+  color: #0a0a0a;
+  transform: scale(1.05);
+}
+
 /* Menu Toggle Button */
 .menu-toggle {
   display: none;
@@ -204,13 +249,25 @@
   width: 85%;
   max-width: 400px;
   height: 100vh;
-  background: #0a0a0a;
+  background: var(--card-bg, #0a0a0a);
   z-index: 1001;
   transition: right 0.3s ease;
   display: flex;
   flex-direction: column;
   box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
   border-left: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+/* Light mode mobile menu */
+[data-theme="light"] .mobile-menu {
+  background: #ffffff;
+  box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode mobile menu */
+[data-theme="dark"] .mobile-menu {
+  background: #0a0a0a;
+  box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
 }
 
 .mobile-menu.active {
@@ -232,14 +289,14 @@
 }
 
 .mobile-logo-image {
-  height: 45px;
+  height: 50px;
   width: auto;
 }
 
 .mobile-logo-text h3 {
   font-size: 0.9rem;
   margin: 0;
-  background: linear-gradient(135deg, #fff, var(--primary-color, #3B82F6));
+  background: linear-gradient(135deg, var(--text-color, #fff), var(--primary-color, #3B82F6));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -288,13 +345,23 @@
   align-items: center;
   gap: 12px;
   padding: 14px 16px;
-  color: #e8e8e8;
+  color: var(--text-color, #e8e8e8);
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
   border-radius: 12px;
   transition: all 0.3s ease;
   background: rgba(255, 255, 255, 0.03);
+}
+
+/* Light mode mobile nav links */
+[data-theme="light"] .mobile-nav-links a {
+  background: rgba(0, 0, 0, 0.03);
+  color: #212529;
+}
+
+[data-theme="light"] .mobile-nav-links a:hover {
+  background: rgba(59, 130, 246, 0.1);
 }
 
 .mobile-nav-links a i:first-child {
@@ -388,7 +455,54 @@
   color: var(--primary-color, #3B82F6);
 }
 
-/* Responsive Design - FIXED for mobile logo visibility */
+/* Mobile Theme Toggle */
+.mobile-theme-toggle {
+  border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+  margin: 0 20px 12px 20px;
+  padding-bottom: 8px;
+}
+
+.theme-toggle-mobile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  color: var(--text-color, #e8e8e8);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 12px;
+}
+
+.theme-toggle-mobile i {
+  width: 24px;
+  font-size: 1rem;
+  color: var(--primary-color, #3B82F6);
+}
+
+.theme-toggle-mobile:hover {
+  background: rgba(59, 130, 246, 0.1);
+}
+
+/* Light mode text colors */
+[data-theme="light"] .mobile-nav-links a {
+  color: #212529;
+}
+
+[data-theme="light"] .mobile-contact-info a {
+  color: #6c757d;
+}
+
+[data-theme="light"] .theme-toggle-mobile {
+  color: #212529;
+}
+
+/* Responsive Design */
 @media (max-width: 1024px) {
   .nav-links a span {
     display: none;
@@ -416,21 +530,21 @@
     display: flex;
   }
   
-  /* FIXED: Show logo text on mobile - removed the display:none */
+  /* Show logo text on mobile */
   .logo-text {
-    display: block !important; /* Force display */
+    display: block !important;
   }
   
   .logo-text h1 {
-    font-size: 0.9rem; /* Slightly smaller on mobile */
+    font-size: 0.9rem;
   }
   
   .logo-text p {
-    font-size: 0.55rem; /* Slightly smaller on mobile */
+    font-size: 0.55rem;
   }
   
   .logo-image {
-    height: 35px; /* Slightly smaller on mobile */
+    height: 45px;
   }
   
   .nav-container {
@@ -449,7 +563,7 @@
   }
   
   .logo-image {
-    height: 30px;
+    height: 45px;
   }
   
   .logo {
@@ -463,9 +577,9 @@
     max-width: 100%;
   }
   
-  /* On very small screens, you might want to hide the tagline but keep the name */
+  /* Hide tagline on very small screens */
   .logo-text p {
-    display: none; /* Hide tagline on very small screens */
+    display: none;
   }
   
   .logo-text h1 {

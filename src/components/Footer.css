@@ -1,9 +1,22 @@
 /* Footer Styles */
 .footer {
-  background: linear-gradient(135deg, #0a0a0a, #030303);
+  background: var(--footer-bg, linear-gradient(135deg, #0a0a0a, #030303));
   border-top: 1px solid var(--border-color, #262626);
   position: relative;
   overflow: hidden;
+  transition: background 0.3s ease;
+}
+
+/* Light mode footer */
+[data-theme="light"] .footer {
+  background: #f8f9fa;
+  border-top-color: #dee2e6;
+}
+
+/* Dark mode footer */
+[data-theme="dark"] .footer {
+  background: linear-gradient(135deg, #0a0a0a, #030303);
+  border-top-color: #262626;
 }
 
 .footer::before {
@@ -47,7 +60,7 @@
   font-size: 1.1rem;
   font-weight: 700;
   margin: 0;
-  background: linear-gradient(135deg, #fff, var(--primary-color, #3B82F6));
+  background: linear-gradient(135deg, var(--text-color, #fff), var(--primary-color, #3B82F6));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -65,6 +78,11 @@
   line-height: 1.6;
   font-size: 0.85rem;
   margin-bottom: 25px;
+}
+
+/* Light mode footer description */
+[data-theme="light"] .footer-description {
+  color: #6c757d;
 }
 
 /* Social Links */
@@ -98,9 +116,21 @@
 .footer-contact h4 {
   font-size: 1.1rem;
   margin-bottom: 20px;
-  color: #fff;
+  color: var(--text-color, #fff);
   position: relative;
   display: inline-block;
+}
+
+/* Light mode heading color */
+[data-theme="light"] .footer-links-col h4,
+[data-theme="light"] .footer-contact h4 {
+  color: #212529;
+}
+
+/* Dark mode heading color */
+[data-theme="dark"] .footer-links-col h4,
+[data-theme="dark"] .footer-contact h4 {
+  color: #fff;
 }
 
 .footer-links-col h4::after,
@@ -136,6 +166,15 @@
   gap: 8px;
 }
 
+/* Light mode link colors */
+[data-theme="light"] .footer-links-col ul li a {
+  color: #6c757d;
+}
+
+[data-theme="dark"] .footer-links-col ul li a {
+  color: #b8b8b8;
+}
+
 .footer-links-col ul li a i {
   font-size: 0.7rem;
   color: var(--primary-color, #3B82F6);
@@ -160,6 +199,15 @@
   font-size: 0.85rem;
 }
 
+/* Light mode contact info */
+[data-theme="light"] .contact-info-list li {
+  color: #6c757d;
+}
+
+[data-theme="dark"] .contact-info-list li {
+  color: #b8b8b8;
+}
+
 .contact-info-list li i {
   color: var(--primary-color, #3B82F6);
   font-size: 1rem;
@@ -171,6 +219,14 @@
   color: var(--text-muted, #b8b8b8);
   text-decoration: none;
   transition: color 0.3s ease;
+}
+
+[data-theme="light"] .contact-info-list li a {
+  color: #6c757d;
+}
+
+[data-theme="dark"] .contact-info-list li a {
+  color: #b8b8b8;
 }
 
 .contact-info-list li a:hover {
@@ -188,9 +244,19 @@
 }
 
 .contact-info-list li div strong {
-  color: #fff;
+  color: var(--text-color, #fff);
   display: block;
   margin-bottom: 5px;
+}
+
+/* Light mode strong text */
+[data-theme="light"] .contact-info-list li div strong {
+  color: #212529;
+}
+
+/* Dark mode strong text */
+[data-theme="dark"] .contact-info-list li div strong {
+  color: #fff;
 }
 
 /* Footer Bottom */
@@ -198,6 +264,16 @@
   padding-top: 30px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   margin-bottom: 15px;
+}
+
+/* Light mode footer bottom border */
+[data-theme="light"] .footer-bottom {
+  border-top-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode footer bottom border */
+[data-theme="dark"] .footer-bottom {
+  border-top-color: rgba(255, 255, 255, 0.1);
 }
 
 .footer-bottom-content {
@@ -214,6 +290,15 @@
   margin: 0;
 }
 
+/* Light mode copyright */
+[data-theme="light"] .footer-copyright p {
+  color: #6c757d;
+}
+
+[data-theme="dark"] .footer-copyright p {
+  color: #b8b8b8;
+}
+
 .footer-legal {
   display: flex;
   gap: 15px;
@@ -225,6 +310,14 @@
   text-decoration: none;
   font-size: 0.8rem;
   transition: color 0.3s ease;
+}
+
+[data-theme="light"] .footer-legal a {
+  color: #6c757d;
+}
+
+[data-theme="dark"] .footer-legal a {
+  color: #b8b8b8;
 }
 
 .footer-legal a:hover {
@@ -243,10 +336,30 @@
   margin-top: 15px;
 }
 
+/* Light mode developer credit border */
+[data-theme="light"] .footer-developer {
+  border-top-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Dark mode developer credit border */
+[data-theme="dark"] .footer-developer {
+  border-top-color: rgba(255, 255, 255, 0.05);
+}
+
 .footer-developer p {
   color: rgba(255, 255, 255, 0.4);
   font-size: 0.7rem;
   margin: 0;
+}
+
+/* Light mode developer text */
+[data-theme="light"] .footer-developer p {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+/* Dark mode developer text */
+[data-theme="dark"] .footer-developer p {
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .footer-developer strong {
@@ -259,11 +372,19 @@
   transition: color 0.3s ease;
 }
 
+[data-theme="light"] .footer-developer a {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .footer-developer a {
+  color: rgba(255, 255, 255, 0.4);
+}
+
 .footer-developer a:hover {
   color: var(--primary-color, #3B82F6);
 }
 
-/* WhatsApp Chat Button */
+/* WhatsApp Chat Button - Stays the same regardless of theme */
 .whatsapp-chat {
   position: fixed;
   bottom: 30px;
@@ -318,7 +439,7 @@
     justify-content: center;
   }
   
-  /* FIXED: Center the Contact Info heading on mobile */
+  /* Center the Contact Info heading on mobile */
   .footer-links-col,
   .footer-contact {
     text-align: center;

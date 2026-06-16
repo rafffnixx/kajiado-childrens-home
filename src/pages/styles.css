@@ -1,4 +1,4 @@
-/* Kajiado Children's Home - Global Styles */
+/* kajiado Childrens Home - Global Styles */
 @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Poppins:wght@400;500;600;700;800&display=swap');
 
 * {
@@ -7,26 +7,29 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #030303;
-  color: #e8e8e8;
-  overflow-x: hidden;
+/* ========== THEME VARIABLES ========== */
+/* Light mode (default) */
+:root,
+[data-theme="light"] {
+  --bg-deep: #f8f9fa;
+  --card-bg: #ffffff;
+  --primary-color: #3B82F6;
+  --primary-dark: #2563EB;
+  --primary-light: #60A5FA;
+  --text-muted: #6c757d;
+  --border-color: #dee2e6;
+  --text-color: #212529;
+  --body-bg: #ffffff;
+  --gradient-dark-start: #f8f9fa;
+  --gradient-dark-end: #ffffff;
+  --hero-overlay: rgba(0, 0, 0, 0.5);
+  --input-bg: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --footer-bg: #f8f9fa;
 }
 
-/* Headings use Poppins font */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-weight: 600;
-}
-
-/* Root Variables - Kajiado Children's Home Theme (Blue) */
-:root {
+/* Dark mode */
+[data-theme="dark"] {
   --bg-deep: #030303;
   --card-bg: #0f0f0f;
   --primary-color: #3B82F6;
@@ -34,6 +37,35 @@ h1, h2, h3, h4, h5, h6 {
   --primary-light: #60A5FA;
   --text-muted: #b8b8b8;
   --border-color: #262626;
+  --text-color: #e8e8e8;
+  --body-bg: #030303;
+  --gradient-dark-start: #0a0a0a;
+  --gradient-dark-end: #030303;
+  --hero-overlay: rgba(0, 0, 0, 0.7);
+  --input-bg: #141414;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --footer-bg: #0a0a0a;
+}
+
+/* Apply theme variables to body */
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--body-bg);
+  color: var(--text-color);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Headings use Poppins font */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 600;
+  color: var(--text-color);
 }
 
 /* Container class for consistent width */
@@ -100,6 +132,7 @@ h1, h2, h3, h4, h5, h6 {
 .page-header h1 {
   font-size: 3rem;
   margin-bottom: 16px;
+  color: white;
 }
 
 .page-header h1 span {
@@ -109,6 +142,7 @@ h1, h2, h3, h4, h5, h6 {
 .page-header p {
   font-size: 1.1rem;
   opacity: 0.95;
+  color: white;
 }
 
 /* Section Header */
@@ -120,6 +154,7 @@ h1, h2, h3, h4, h5, h6 {
 .section-title {
   font-size: 2.5rem;
   margin-bottom: 16px;
+  color: var(--text-color);
 }
 
 .section-title span {
@@ -142,11 +177,13 @@ h1, h2, h3, h4, h5, h6 {
 .cta-content h2 {
   font-size: 2rem;
   margin-bottom: 16px;
+  color: white;
 }
 
 .cta-content p {
   margin-bottom: 32px;
   font-size: 1.1rem;
+  color: white;
 }
 
 .cta-buttons {
@@ -169,7 +206,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Stats Section */
 .stats-section {
   padding: 60px 0;
-  background: linear-gradient(135deg, #0a0a0a, #030303);
+  background: linear-gradient(135deg, var(--gradient-dark-start), var(--gradient-dark-end));
 }
 
 .stats-grid {
@@ -212,7 +249,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Programs Section */
 .programs-section {
   padding: 90px 0;
-  border-bottom: 1px solid #151515;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .programs-grid {
@@ -245,6 +282,7 @@ h1, h2, h3, h4, h5, h6 {
 .program-card h3 {
   font-size: 1.3rem;
   margin-bottom: 12px;
+  color: var(--text-color);
 }
 
 .program-card p {
@@ -283,6 +321,7 @@ h1, h2, h3, h4, h5, h6 {
 .about-text h2 {
   font-size: 2.5rem;
   margin-bottom: 24px;
+  color: var(--text-color);
 }
 
 .about-text h2 span {
@@ -304,7 +343,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Mission & Vision Section */
 .mission-vision {
   padding: 60px 0;
-  background: #080808;
+  background: var(--bg-deep);
 }
 
 .mission-vision-grid {
@@ -380,6 +419,7 @@ h1, h2, h3, h4, h5, h6 {
 .partner-card h3 {
   font-size: 1.2rem;
   margin-bottom: 12px;
+  color: var(--text-color);
 }
 
 .partner-card p {
@@ -390,7 +430,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Services Provided Section */
 .services-provided {
   padding: 90px 0;
-  background: #080808;
+  background: var(--bg-deep);
 }
 
 .services-grid {
@@ -453,6 +493,7 @@ h1, h2, h3, h4, h5, h6 {
 .staff-card h3 {
   font-size: 1.2rem;
   margin-bottom: 4px;
+  color: var(--text-color);
 }
 
 .staff-card p {
@@ -462,7 +503,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Values Section */
 .values-section {
   padding: 60px 0 90px;
-  background: #080808;
+  background: var(--bg-deep);
 }
 
 .values-grid {
@@ -502,6 +543,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .value-card h3 {
   font-size: 1.2rem;
+  color: var(--text-color);
 }
 
 /* Impact Section */
@@ -515,6 +557,7 @@ h1, h2, h3, h4, h5, h6 {
 .impact-content h2 {
   font-size: 2.5rem;
   margin-bottom: 20px;
+  color: white;
 }
 
 .impact-content p {
@@ -522,18 +565,20 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 600px;
   margin: 0 auto 20px;
   opacity: 0.95;
+  color: white;
 }
 
 .impact-quote {
   font-size: 1.3rem;
   font-weight: 500;
   margin-top: 20px;
+  color: white;
 }
 
 /* Testimonial Section */
 .testimonial-section {
   padding: 80px 0;
-  background: linear-gradient(135deg, #0a0a0a, #030303);
+  background: var(--bg-deep);
 }
 
 .testimonial-card {
@@ -557,7 +602,7 @@ h1, h2, h3, h4, h5, h6 {
 .testimonial-card p {
   font-size: 1.2rem;
   line-height: 1.7;
-  color: #fff;
+  color: var(--text-color);
   margin-bottom: 20px;
 }
 
@@ -606,7 +651,7 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: var(--hero-overlay);
 }
 
 .hero-content-wrapper {
@@ -630,18 +675,21 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 3.5rem;
   font-weight: 800;
   margin-bottom: 20px;
+  color: white;
   animation: slideUp 0.6s ease-out;
 }
 
 .hero-subtitle {
   font-size: 1.5rem;
   margin-bottom: 16px;
+  color: white;
   animation: slideUp 0.6s ease-out 0.2s both;
 }
 
 .hero-description {
   font-size: 1.1rem;
   opacity: 0.95;
+  color: white;
   animation: slideUp 0.6s ease-out 0.4s both;
 }
 
@@ -677,7 +725,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Mission Statement Styles */
 .mission-statement {
-  background: #f0f9ff;
+  background: var(--bg-deep);
   padding: 60px 0;
   text-align: center;
 }
@@ -691,7 +739,7 @@ h1, h2, h3, h4, h5, h6 {
 .mission-content p {
   font-size: 1.2rem;
   line-height: 1.8;
-  color: #333;
+  color: var(--text-color);
   max-width: 800px;
   margin: 0 auto;
 }
@@ -801,7 +849,7 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--primary-color);
 }
 
-/* About Page Hero with Background Image - FIXED */
+/* About Page Hero with Background Image */
 .about-hero {
   position: relative;
   padding: 120px 0;
@@ -836,7 +884,7 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: var(--hero-overlay);
   z-index: 1;
 }
 
@@ -850,6 +898,7 @@ h1, h2, h3, h4, h5, h6 {
 .hero-content-about h1 {
   font-size: 3rem;
   margin-bottom: 16px;
+  color: white;
   animation: fadeInUp 0.8s ease-out;
 }
 
@@ -861,6 +910,7 @@ h1, h2, h3, h4, h5, h6 {
 .hero-content-about p {
   font-size: 1.2rem;
   opacity: 0.95;
+  color: white;
   animation: fadeInUp 0.8s ease-out 0.2s both;
 }
 
@@ -904,6 +954,7 @@ h1, h2, h3, h4, h5, h6 {
 .child-card-header h3 {
   font-size: 1.2rem;
   margin-bottom: 4px;
+  color: white;
 }
 
 .child-age {
@@ -940,7 +991,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Success Stories */
 .success-stories {
   padding: 90px 0;
-  background: #080808;
+  background: var(--bg-deep);
 }
 
 .stories-grid {
@@ -972,6 +1023,7 @@ h1, h2, h3, h4, h5, h6 {
 .story-card h3 {
   font-size: 1.3rem;
   margin-bottom: 8px;
+  color: var(--text-color);
 }
 
 .story-subtitle {
@@ -1100,6 +1152,7 @@ h1, h2, h3, h4, h5, h6 {
 .modal-header h2 {
   font-size: 1.5rem;
   margin: 0;
+  color: white;
 }
 
 .modal-body {
@@ -1113,7 +1166,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .modal-body strong {
-  color: #fff;
+  color: var(--text-color);
 }
 
 .sponsorship-cost {
@@ -1229,10 +1282,10 @@ h1, h2, h3, h4, h5, h6 {
 .form-group textarea {
   width: 100%;
   padding: 12px 16px;
-  background: #141414;
+  background: var(--input-bg);
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  color: #fff;
+  color: var(--text-color);
   font-size: 0.95rem;
   transition: all 0.3s ease;
 }
@@ -1327,7 +1380,7 @@ h1, h2, h3, h4, h5, h6 {
 .contact-detail strong {
   display: block;
   margin-bottom: 8px;
-  color: #fff;
+  color: var(--text-color);
 }
 
 .contact-detail a {
@@ -1363,7 +1416,7 @@ h1, h2, h3, h4, h5, h6 {
 .social-contact h4 {
   font-size: 1rem;
   margin-bottom: 16px;
-  color: #fff;
+  color: var(--text-color);
 }
 
 .social-links {
@@ -1409,7 +1462,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .contact-faq {
   padding: 60px 0 90px;
-  background: #080808;
+  background: var(--bg-deep);
 }
 
 .contact-faq .faqs-grid {
@@ -1450,7 +1503,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Donation Tabs */
 .donation-tabs {
   padding: 40px 0;
-  background: #080808;
+  background: var(--bg-deep);
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -1507,6 +1560,7 @@ h1, h2, h3, h4, h5, h6 {
 .donation-form h2 {
   font-size: 1.8rem;
   margin-bottom: 24px;
+  color: var(--text-color);
 }
 
 .donation-form h3 {
@@ -1524,7 +1578,7 @@ h1, h2, h3, h4, h5, h6 {
 .toggle-btn {
   flex: 1;
   padding: 10px;
-  background: #141414;
+  background: var(--input-bg);
   border: 1px solid var(--border-color);
   border-radius: 48px;
   cursor: pointer;
@@ -1548,13 +1602,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .amount-btn {
   padding: 10px;
-  background: #141414;
+  background: var(--input-bg);
   border: 1px solid var(--border-color);
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 600;
-  color: #fff;
+  color: var(--text-color);
 }
 
 .amount-btn:hover,
@@ -1577,10 +1631,10 @@ h1, h2, h3, h4, h5, h6 {
 .custom-amount input {
   width: 100%;
   padding: 12px 16px;
-  background: #141414;
+  background: var(--input-bg);
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  color: #fff;
+  color: var(--text-color);
   font-size: 1rem;
 }
 
@@ -1595,10 +1649,10 @@ h1, h2, h3, h4, h5, h6 {
 .form-row select {
   width: 100%;
   padding: 12px 16px;
-  background: #141414;
+  background: var(--input-bg);
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  color: #fff;
+  color: var(--text-color);
   font-size: 0.95rem;
 }
 
@@ -1706,6 +1760,7 @@ h1, h2, h3, h4, h5, h6 {
 .volunteer-form h2 {
   font-size: 1.8rem;
   margin-bottom: 16px;
+  color: var(--text-color);
 }
 
 .items-grid,
@@ -1718,12 +1773,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .item-card,
 .opportunity-card {
-  background: #141414;
+  background: var(--input-bg);
   padding: 16px;
   border-radius: 16px;
   border: 1px solid var(--border-color);
   font-weight: 600;
   transition: all 0.3s ease;
+  color: var(--text-color);
 }
 
 .item-card:hover,
@@ -1845,7 +1901,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .donors-section {
   padding: 90px 0;
-  background: #080808;
+  background: var(--bg-deep);
 }
 
 .donors-grid {
@@ -1875,7 +1931,7 @@ h1, h2, h3, h4, h5, h6 {
 .donor-info h4 {
   font-size: 1rem;
   margin-bottom: 4px;
-  color: #fff;
+  color: var(--text-color);
 }
 
 .donor-type {
@@ -1927,7 +1983,7 @@ h1, h2, h3, h4, h5, h6 {
 .upcoming-image {
   height: 100%;
   min-height: 400px;
-  background: #141414;
+  background: var(--input-bg);
 }
 
 .upcoming-image img {
@@ -1956,7 +2012,7 @@ h1, h2, h3, h4, h5, h6 {
 .upcoming-content h3 {
   font-size: 1.8rem;
   margin-bottom: 20px;
-  color: #fff;
+  color: var(--text-color);
 }
 
 .event-details {
@@ -1985,7 +2041,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .past-events {
   padding: 60px 0;
-  background: #080808;
+  background: var(--bg-deep);
 }
 
 .events-grid {
@@ -2012,7 +2068,7 @@ h1, h2, h3, h4, h5, h6 {
 .event-image {
   height: 220px;
   overflow: hidden;
-  background: #141414;
+  background: var(--input-bg);
 }
 
 .event-image img {
@@ -2042,7 +2098,7 @@ h1, h2, h3, h4, h5, h6 {
 .event-content h3 {
   font-size: 1.2rem;
   margin-bottom: 8px;
-  color: #fff;
+  color: var(--text-color);
 }
 
 .event-location {
@@ -2140,7 +2196,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .gallery-item {
-  background: var(--card-bg);
+  background: var(--card_bg);
   border-radius: 20px;
   overflow: hidden;
   cursor: pointer;
@@ -2158,7 +2214,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   height: 260px;
   overflow: hidden;
-  background: #141414;
+  background: var(--input-bg);
 }
 
 .gallery-image-wrapper img {
@@ -2212,7 +2268,7 @@ h1, h2, h3, h4, h5, h6 {
 .gallery-info h3 {
   font-size: 1rem;
   margin-bottom: 4px;
-  color: #fff;
+  color: var(--text-color);
 }
 
 .gallery-info p {
@@ -2230,6 +2286,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 24px;
   border: 1px solid var(--border-color);
   margin-bottom: 60px;
+  color: var(--text-muted);
 }
 
 .modal-container {
@@ -2259,7 +2316,7 @@ h1, h2, h3, h4, h5, h6 {
   height: auto;
   max-height: 70vh;
   object-fit: contain;
-  background: #0a0a0a;
+  background: var(--bg-deep);
 }
 
 .modal-caption {
@@ -2272,7 +2329,7 @@ h1, h2, h3, h4, h5, h6 {
 .modal-caption h3 {
   font-size: 1.2rem;
   margin-bottom: 5px;
-  color: #fff;
+  color: var(--text-color);
 }
 
 .modal-caption p {
@@ -2326,7 +2383,7 @@ h1, h2, h3, h4, h5, h6 {
 .way-card h3 {
   font-size: 1.3rem;
   margin-bottom: 12px;
-  color: #fff;
+  color: var(--text-color);
 }
 
 .way-card p {
@@ -2356,7 +2413,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .get-involved-page .stats-section {
   padding: 90px 0;
-  background: #080808;
+  background: var(--bg-deep);
   transition: all 1s ease-out 0.3s;
   transform: translateY(30px);
   opacity: 0;
@@ -2403,7 +2460,7 @@ h1, h2, h3, h4, h5, h6 {
 .wishlist-item h4 {
   font-size: 1rem;
   margin-bottom: 6px;
-  color: #fff;
+  color: var(--text-color);
 }
 
 .wishlist-item p {
@@ -2413,7 +2470,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .bank-details-section {
   padding: 60px 0;
-  background: linear-gradient(135deg, #0a0a0a, #030303);
+  background: var(--bg-deep);
 }
 
 .bank-card {
@@ -2442,7 +2499,7 @@ h1, h2, h3, h4, h5, h6 {
 .bank-card h3 {
   font-size: 1.5rem;
   margin-bottom: 24px;
-  color: #fff;
+  color: var(--text-color);
 }
 
 .bank-card p {
@@ -2457,7 +2514,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #0a0a0a 0%, #030303 100%);
+  background: linear-gradient(135deg, var(--bg-deep) 0%, var(--body-bg) 100%);
   padding: 100px 20px;
 }
 
@@ -2514,7 +2571,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .not-found-content h2 {
   font-size: 1.8rem;
-  color: #fff;
+  color: var(--text-color);
   margin-bottom: 16px;
 }
 
@@ -2536,6 +2593,24 @@ h1, h2, h3, h4, h5, h6 {
 .not-found-buttons .btn-outline {
   min-width: 180px;
   justify-content: center;
+}
+
+/* Footer Styles */
+.footer {
+  background: var(--footer-bg);
+  border-top: 1px solid var(--border-color);
+  padding: 60px 0 30px;
+  margin-top: 60px;
+}
+
+.footer-description,
+.footer-links-col a,
+.contact-info-list li {
+  color: var(--text-muted);
+}
+
+.footer-copyright p {
+  color: var(--text-muted);
 }
 
 /* Animations */
@@ -2572,7 +2647,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Responsive Design - Consolidated */
+/* Responsive Design */
 @media (max-width: 1024px) {
   .donation-form-section,
   .goods-donation,

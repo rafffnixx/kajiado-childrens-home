@@ -8,7 +8,7 @@ export default function Terms() {
   const sections = [
     {
       title: "1. Acceptance of Terms",
-      content: "By accessing and using the Kajiado Children's Home website ('the Website'), you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please do not use our website."
+      content: "By accessing and using the kajiado Childrens Home website ('the Website'), you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please do not use our website."
     },
     {
       title: "2. Use of Website",
@@ -16,7 +16,7 @@ export default function Terms() {
     },
     {
       title: "3. Donations and Payments",
-      content: "All donations made to Kajiado Children's Home are final and non-refundable. When you make a donation through our website, you confirm that you are the authorized holder of the payment method used. We reserve the right to refuse or cancel any donation at our discretion."
+      content: "All donations made to kajiado Childrens Home are final and non-refundable. When you make a donation through our website, you confirm that you are the authorized holder of the payment method used. We reserve the right to refuse or cancel any donation at our discretion."
     },
     {
       title: "4. Sponsorship Commitments",
@@ -24,7 +24,7 @@ export default function Terms() {
     },
     {
       title: "5. Intellectual Property",
-      content: "All content on this website, including text, graphics, logos, images, and software, is the property of Kajiado Children's Home or its content suppliers and is protected by Kenyan and international copyright laws. You may not reproduce, distribute, or transmit any content without our prior written permission."
+      content: "All content on this website, including text, graphics, logos, images, and software, is the property of Childrens Home or its content suppliers and is protected by Kenyan and international copyright laws. You may not reproduce, distribute, or transmit any content without our prior written permission."
     },
     {
       title: "6. Third-Party Links",
@@ -36,11 +36,11 @@ export default function Terms() {
     },
     {
       title: "8. Limitation of Liability",
-      content: "To the fullest extent permitted by law, Kajiado Children's Home shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the website."
+      content: "To the fullest extent permitted by law, kajiado Childrens Home shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the website."
     },
     {
       title: "9. Indemnification",
-      content: "You agree to indemnify, defend, and hold harmless Kajiado Children's Home, its officers, directors, employees, agents, and volunteers from and against any and all claims, damages, obligations, losses, liabilities, costs, or debt, and expenses arising from your use of the website or your violation of these Terms."
+      content: "You agree to indemnify, defend, and hold harmless kajiado Childrens Home, its officers, directors, employees, agents, and volunteers from and against any and all claims, damages, obligations, losses, liabilities, costs, or debt, and expenses arising from your use of the website or your violation of these Terms."
     },
     {
       title: "10. Changes to Terms",
@@ -60,8 +60,8 @@ export default function Terms() {
   return (
     <>
       <SEO 
-        title="Terms & Conditions - Kajiado Children's Home"
-        description="Read the terms and conditions governing the use of Kajiado Children's Home website. Learn about donations, sponsorships, and your rights and responsibilities."
+        title="Terms & Conditions - kajiado Childrens Home"
+        description="Read the terms and conditions governing the use of kajiado Childrens Home website. Learn about donations, sponsorships, and your rights and responsibilities."
         path="/terms"
       />
       
@@ -81,7 +81,7 @@ export default function Terms() {
             </div>
 
             <div className="legal-intro">
-              <p>Welcome to the Kajiado Children's Home website. By accessing or using our website, you agree to comply with and be bound by the following terms and conditions. These terms apply to all visitors, users, donors, sponsors, and others who access or use our website.</p>
+              <p>Welcome to the kajiado Childrens Home website. By accessing or using our website, you agree to comply with and be bound by the following terms and conditions. These terms apply to all visitors, users, donors, sponsors, and others who access or use our website.</p>
             </div>
 
             {sections.map((section, index) => (
@@ -97,7 +97,7 @@ export default function Terms() {
                       <strong>Phone:</strong> <a href="tel:+254700123456">+254 700 123 456</a>
                     </p>
                     <p>
-                      <strong>Address:</strong> Kajiado Children's Home, Kajiado Town, Kajiado County, Kenya
+                      <strong>Address:</strong> kajiado Childrens Home, Kajiado Town, Kajiado County, Kenya
                     </p>
                   </div>
                 )}

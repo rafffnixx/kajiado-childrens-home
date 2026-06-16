@@ -2,8 +2,8 @@
   "name": "kajiado-childrens-home",
   "version": "1.0.0",
   "private": true,
-  "description": "Kajiado Children's Home - Providing hope, care, and education to vulnerable children in Kajiado, Kenya",
-  "author": "Kajiado Children's Home",
+  "description": "kajiado Bright Horizons - Providing hope, care, and education to vulnerable children in Kajiado, Kenya",
+  "author": "kajiado Bright Horizons",
   "homepage": "https://www.kajiadochildrenhome.org",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",

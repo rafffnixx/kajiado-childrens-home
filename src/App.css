@@ -1,7 +1,38 @@
-/* Kajiado Children's Home - App Styles */
+/* kajiado Childrens Home - App Styles */
+
+/* Light mode variables (default) */
+:root,
+[data-theme="light"] {
+  --bg-deep: #f8f9fa;
+  --card-bg: #ffffff;
+  --primary-color: #3B82F6;
+  --primary-dark: #2563EB;
+  --primary-light: #60A5FA;
+  --text-muted: #6c757d;
+  --border-color: #dee2e6;
+  --text-color: #212529;
+  --app-bg: #ffffff;
+}
+
+/* Dark mode variables */
+[data-theme="dark"] {
+  --bg-deep: #030303;
+  --card-bg: #0f0f0f;
+  --primary-color: #3B82F6;
+  --primary-dark: #2563EB;
+  --primary-light: #60A5FA;
+  --text-muted: #b8b8b8;
+  --border-color: #262626;
+  --text-color: #ffffff;
+  --app-bg: #030303;
+}
+
+/* Apply theme variables */
 .App {
   min-height: 100vh;
-  background-color: #030303;
+  background-color: var(--app-bg);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Remove default React logo styles since we're not using them */
@@ -27,27 +58,27 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a1a;
+  background: var(--bg-deep);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary-color, #3B82F6);
+  background: var(--primary-color);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-dark, #2563EB);
+  background: var(--primary-dark);
 }
 
 /* Selection color */
 ::selection {
   background: rgba(59, 130, 246, 0.3);
-  color: var(--primary-color, #3B82F6);
+  color: var(--primary-color);
 }
 
 ::-moz-selection {
   background: rgba(59, 130, 246, 0.3);
-  color: var(--primary-color, #3B82F6);
+  color: var(--primary-color);
 }
 
 /* Loading state for lazy loading */
@@ -56,7 +87,7 @@ html {
   justify-content: center;
   align-items: center;
   min-height: 400px;
-  color: var(--primary-color, #3B82F6);
+  color: var(--primary-color);
   font-size: 1.2rem;
 }
 
@@ -66,7 +97,7 @@ html {
   height: 40px;
   margin-left: 15px;
   border: 3px solid rgba(59, 130, 246, 0.3);
-  border-top-color: var(--primary-color, #3B82F6);
+  border-top-color: var(--primary-color);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
@@ -100,15 +131,15 @@ html {
 
 /* Utility classes */
 .text-primary {
-  color: var(--primary-color, #3B82F6);
+  color: var(--primary-color);
 }
 
 .bg-primary {
-  background: linear-gradient(105deg, var(--primary-color, #3B82F6), var(--primary-dark, #2563EB));
+  background: linear-gradient(105deg, var(--primary-color), var(--primary-dark));
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #FFFFFF 10%, var(--primary-color, #3B82F6) 85%);
+  background: linear-gradient(135deg, var(--text-color) 10%, var(--primary-color) 85%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -129,7 +160,7 @@ html {
 
 /* Focus styles for accessibility */
 *:focus-visible {
-  outline: 2px solid var(--primary-color, #3B82F6);
+  outline: 2px solid var(--primary-color);
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -139,8 +170,8 @@ html {
   position: fixed;
   top: -40px;
   left: 0;
-  background: var(--primary-color, #3B82F6);
-  color: #0a0a0a;
+  background: var(--primary-color);
+  color: #ffffff;
   padding: 8px 16px;
   text-decoration: none;
   z-index: 10000;
@@ -185,17 +216,6 @@ html {
   }
 }
 
-/* Root variables for consistent theming */
-:root {
-  --bg-deep: #030303;
-  --card-bg: #0f0f0f;
-  --primary-color: #3B82F6;
-  --primary-dark: #2563EB;
-  --primary-light: #60A5FA;
-  --text-muted: #b8b8b8;
-  --border-color: #262626;
-}
-
 /* Container max-width */
 .container {
   max-width: 1200px;
@@ -236,6 +256,7 @@ html {
 .section-title {
   font-size: 2.5rem;
   margin-bottom: 16px;
+  color: var(--text-color);
 }
 
 .section-title span {
@@ -280,4 +301,15 @@ html {
 .cta-buttons .btn-outline:hover {
   background: white;
   color: var(--primary-color);
+}
+
+/* Cards and common elements should use theme variables */
+.card,
+.card-bg {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+.text-muted {
+  color: var(--text-muted);
 }

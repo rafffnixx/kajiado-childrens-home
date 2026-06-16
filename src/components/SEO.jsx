@@ -13,7 +13,7 @@ const defaultSEO = {
 
 const SEO = ({ title, description, path, image, article, noIndex }) => {
   const seo = {
-    title: title ? `${title} | Kajiado Children's Home` : defaultSEO.title,
+    title: title ? `${title} | kajiado Childrens Home` : defaultSEO.title,
     description: description || defaultSEO.description,
     image: image || defaultSEO.image,
     url: `${defaultSEO.siteUrl}${path || '/'}`,
@@ -24,8 +24,8 @@ const SEO = ({ title, description, path, image, article, noIndex }) => {
       {/* Basic Meta Tags */}
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
-      <meta name="keywords" content="Kajiado Children's Home, orphanage Kenya, sponsor a child Kenya, donate to children, vulnerable children, child sponsorship, children's charity Kenya" />
-      <meta name="author" content="Kajiado Children's Home" />
+      <meta name="keywords" content="kajiado Bright Horizons, orphanage Kenya, sponsor a child Kenya, donate to children, vulnerable children, child sponsorship, children's charity Kenya" />
+      <meta name="author" content="kajiado Bright Horizons" />
       <meta name="theme-color" content="#3B82F6" />
       {noIndex && <meta name="robots" content="noindex, nofollow" />}
       
@@ -35,7 +35,7 @@ const SEO = ({ title, description, path, image, article, noIndex }) => {
       <meta property="og:image" content={seo.image} />
       <meta property="og:url" content={seo.url} />
       <meta property="og:type" content={article ? 'article' : 'website'} />
-      <meta property="og:site_name" content="Kajiado Children's Home" />
+      <meta property="og:site_name" content="kajiado Bright Horizons" />
       <meta property="og:locale" content="en_KE" />
       
       {/* Twitter Card */}
@@ -53,9 +53,9 @@ const SEO = ({ title, description, path, image, article, noIndex }) => {
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "NGO",
-          "name": "Kajiado Children's Home",
+          "name": "kajiado Bright Horizons",
           "url": defaultSEO.siteUrl,
-          "logo": `${defaultSEO.siteUrl}/logo.png`,
+          "logo": `${defaultSEO.siteUrl}/logo.jpg`,
           "image": seo.image,
           "description": defaultSEO.description,
           "foundingDate": "1997",
@@ -81,7 +81,7 @@ const SEO = ({ title, description, path, image, article, noIndex }) => {
           ],
           "donation": {
             "@type": "DonateAction",
-            "name": "Support Kajiado Children's Home",
+            "name": "Support kajiado Childrens Home",
             "url": `${defaultSEO.siteUrl}/donate`
           }
         })}

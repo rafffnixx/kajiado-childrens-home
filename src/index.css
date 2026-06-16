@@ -1,4 +1,4 @@
-/* Kajiado Children's Home - Global Styles */
+/* kajiado Childrens Home - Global Styles */
 @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Poppins:wght@400;500;600;700;800&display=swap');
 
 * {
@@ -7,6 +7,43 @@
   box-sizing: border-box;
 }
 
+/* ========== THEME VARIABLES ========== */
+/* Light mode (default) */
+:root,
+[data-theme="light"] {
+  --bg-deep: #f8f9fa;
+  --card-bg: #ffffff;
+  --primary-color: #3B82F6;
+  --primary-dark: #2563EB;
+  --primary-light: #60A5FA;
+  --text-muted: #6c757d;
+  --border-color: #dee2e6;
+  --text-color: #212529;
+  --body-bg: #ffffff;
+  --code-bg: #f1f3f5;
+  --code-color: #3B82F6;
+  --gradient-dark-start: #f8f9fa;
+  --gradient-dark-end: #ffffff;
+}
+
+/* Dark mode */
+[data-theme="dark"] {
+  --bg-deep: #030303;
+  --card-bg: #0f0f0f;
+  --primary-color: #3B82F6;
+  --primary-dark: #2563EB;
+  --primary-light: #60A5FA;
+  --text-muted: #b8b8b8;
+  --border-color: #262626;
+  --text-color: #e8e8e8;
+  --body-bg: #030303;
+  --code-bg: #1a1a1a;
+  --code-color: #3B82F6;
+  --gradient-dark-start: #0a0a0a;
+  --gradient-dark-end: #030303;
+}
+
+/* Apply theme variables to body */
 body {
   margin: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -14,21 +51,23 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #030303;
-  color: #e8e8e8;
+  background-color: var(--body-bg);
+  color: var(--text-color);
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Headings use Poppins font */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-weight: 600;
+  color: var(--text-color);
 }
 
 code {
   font-family: 'Courier New', source-code-pro, Menlo, Monaco, Consolas, monospace;
-  background: #1a1a1a;
-  color: #3B82F6;
+  background: var(--code-bg);
+  color: var(--code-color);
   padding: 2px 6px;
   border-radius: 4px;
   font-size: 0.9em;
@@ -82,17 +121,6 @@ input, textarea, select, button {
   .container {
     padding: 0 16px;
   }
-}
-
-/* Root Variables - Kajiado Children's Home Theme (Blue) */
-:root {
-  --bg-deep: #030303;
-  --card-bg: #0f0f0f;
-  --primary-color: #3B82F6;      /* Blue primary color */
-  --primary-dark: #2563EB;        /* Darker blue */
-  --primary-light: #60A5FA;       /* Lighter blue */
-  --text-muted: #b8b8b8;
-  --border-color: #262626;
 }
 
 /* Button Styles */
@@ -151,6 +179,7 @@ input, textarea, select, button {
 .page-header h1 {
   font-size: 3rem;
   margin-bottom: 16px;
+  color: white;
 }
 
 .page-header h1 span {
@@ -160,6 +189,7 @@ input, textarea, select, button {
 .page-header p {
   font-size: 1.1rem;
   opacity: 0.95;
+  color: white;
 }
 
 /* Section Header */
@@ -171,6 +201,7 @@ input, textarea, select, button {
 .section-title {
   font-size: 2.5rem;
   margin-bottom: 16px;
+  color: var(--text-color);
 }
 
 .section-title span {
@@ -193,11 +224,13 @@ input, textarea, select, button {
 .cta-content h2 {
   font-size: 2rem;
   margin-bottom: 16px;
+  color: white;
 }
 
 .cta-content p {
   margin-bottom: 32px;
   font-size: 1.1rem;
+  color: white;
 }
 
 .cta-buttons {

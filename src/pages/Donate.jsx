@@ -75,8 +75,8 @@ export default function Donate() {
   return (
     <>
       <SEO 
-        title="Donate - Support Kajiado Children's Home"
-        description="Make a donation to Kajiado Children's Home. Your generosity provides shelter, education, healthcare, and love to vulnerable children in Kajiado, Kenya."
+        title="Donate - Support kajiado Childrens Home"
+        description="Make a donation to kajiado Childrens Home. Your generosity provides shelter, education, healthcare, and love to vulnerable children in Kajiado, Kenya."
         path="/donate"
       />
       
@@ -106,13 +106,13 @@ export default function Donate() {
                 onClick={() => setActiveTab('money')}
                 className={`tab-btn ${activeTab === 'money' ? 'active' : ''}`}
               >
-                <i className="fas fa-money-bill-wave"></i> Money Donation
+                <i className="fas fa-money-bill-wave"></i> Cash Donations
               </button>
               <button
                 onClick={() => setActiveTab('goods')}
                 className={`tab-btn ${activeTab === 'goods' ? 'active' : ''}`}
               >
-                <i className="fas fa-box-open"></i> Goods & Foodstuff
+                <i className="fas fa-box-open"></i> Gifts in Kind
               </button>
               <button
                 onClick={() => setActiveTab('volunteer')}
@@ -249,7 +249,7 @@ export default function Donate() {
                     </ul>
                     <div className="bank-details">
                       <p>Bank: Equity Bank</p>
-                      <p>Account: Kajiado Children's Home</p>
+                      <p>Account: kajiado Childrens Home</p>
                       <p>Account No: 1234567890</p>
                     </div>
                   </div>
@@ -292,7 +292,7 @@ export default function Donate() {
                     <ol>
                       <li>Fill in your contact information below</li>
                       <li>We will contact you to arrange drop-off or pickup</li>
-                      <li>Bring items to: Kajiado Children's Home, Kajiado Town</li>
+                      <li>Bring items to: kajiado Childrens Home, Kajiado Town</li>
                       <li>For large donations, we can arrange pickup</li>
                     </ol>
                   </div>
@@ -338,7 +338,7 @@ export default function Donate() {
 
                 <div className="goods-info">
                   <h3><i className="fas fa-map-marker-alt"></i> Drop-off Location</h3>
-                  <p>Kajiado Children's Home<br />Kajiado Town, Kajiado County<br />Kenya</p>
+                  <p>kajiado Bright Horizons<br />Kajiado Town, Kajiado County<br />Kenya</p>
                   
                   <h3><i className="fas fa-phone-alt"></i> Contact for Drop-off</h3>
                   <p>Phone: +254 700 123 456</p>

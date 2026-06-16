@@ -8,31 +8,25 @@ export default function DonorsPartners() {
     {
       name: "Hope for Kajiado",
       role: "Fundraising & Support Partner",
-      description: "Helps sustain Kajiado Children's Home through fundraising, child sponsorship, and operational support.",
+      description: "Helps sustain kajiado Childrens Home through fundraising, child sponsorship, and operational support.",
       impact: "Sustaining KCH operations",
       icon: "🌟"
     },
     {
-      name: "Kajiado Valley School",
-      role: "Education Partner",
-      description: "Our young children learn here. Open to outside students who pay fees, creating a sustainable model that helps support our home's operations.",
+      name: "Christ Memorial Church",
+      role: "Fundraising in UK ",
+      description: "Supports Kajiado Childrens Home through fundraising initiatives, mobilizing resources and community support from the United Kingdom.",
       impact: "50+ children educated daily",
       icon: "📚"
     },
     {
-      name: "Bright Horizons Project",
-      role: "Mentorship & Career Partner",
-      description: "Provides mentorship, career readiness training, digital skills, and guidance for older students transitioning to adulthood.",
-      impact: "15+ students in higher education",
+      name: "Kajiado Valley School of Excellence",
+      role: "Pre-School & Primary School Partner ",
+      description: "Provides quality early childhood and primary education, nurturing young learners and supporting the mission of Kajiado Childrens Home.",
+      impact: " 50+ students in junior school",
       icon: "🎓"
     },
-    {
-      name: "Namanga Hope Centre",
-      role: "Community Outreach Partner",
-      description: "Provides nutritious meals for children and the elderly, clothing distribution, mentorship and life skills training to vulnerable communities.",
-      impact: "100+ people served monthly",
-      icon: "🍲"
-    }
+
   ];
 
   const donors = [
@@ -49,7 +43,7 @@ export default function DonorsPartners() {
   return (
     <>
       <SEO 
-        title="Our Partners & Donors - Kajiado Children's Home"
+        title="Our Partners & Donors - kajiado Childrens Home"
         description="Meet the generous partners and donors who make our work possible. Join us in transforming young lives in Kajiado, Kenya through partnership and support."
         path="/donors-partners"
       />

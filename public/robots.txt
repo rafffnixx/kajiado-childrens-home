@@ -1,6 +1,6 @@
 {
   "short_name": "Kajiado Children",
-  "name": "Kajiado Children's Home",
+  "name": "kajiado Bright Horizons",
   "description": "Providing shelter, education, healthcare, and love to vulnerable children in Kajiado, Kenya since 1997.",
   "icons": [
     {

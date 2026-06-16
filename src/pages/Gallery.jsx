@@ -26,8 +26,8 @@ export default function Gallery() {
   return (
     <>
       <SEO 
-        title="Gallery - Kajiado Children's Home"
-        description="View moments of joy, learning, and growth at Kajiado Children's Home. See our children in daily activities, education, sports, and special events."
+        title="Gallery - kajiado Childrens Home"
+        description="View moments of joy, learning, and growth at kajiado Childrens Home. See our children in daily activities, education, sports, and special events."
         path="/gallery"
       />
       
@@ -44,7 +44,7 @@ export default function Gallery() {
           <div className="container">
             <div className="hero-content-about">
               <h1>Our <span>Gallery</span></h1>
-              <p>Moments of joy, learning, and growth at Kajiado Children's Home</p>
+              <p>Moments of joy, learning, and growth at kajiado Childrens Home</p>
             </div>
           </div>
         </section>

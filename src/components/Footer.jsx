@@ -4,11 +4,12 @@ import './Footer.css';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const logoSrc = "/logo.png";
+  const logoSrc = "/logo.jpg";
 
   const quickLinks = [
     { path: '/', label: 'Home' },
     { path: '/about', label: 'About Us' },
+      { path: '/programs', label: 'Programs', icon: 'fas fa-book-open' }, // Add this
     { path: '/donors-partners', label: 'Partners' },
     { path: '/children', label: 'Sponsor a Child' },
     { path: '/get-involved', label: 'Get Involved' },
@@ -35,14 +36,14 @@ export default function Footer() {
           {/* About Column */}
           <div className="footer-about">
             <div className="footer-logo">
-              <img src={logoSrc} alt="Kajiado Children's Home Logo" className="footer-logo-image" />
+              <img src={logoSrc} alt="kajiado Bright Horizons Logo" className="footer-logo-image" />
               <div className="footer-logo-text">
-                <h3>Kajiado Children's Home</h3>
-                <p>CARING FOR CHILDREN • KENYA</p>
+                <h3>kajiado Childrens Home</h3>
+                <p>MAKING A DIFFERENCE ONE CHILD AT A TIME</p>
               </div>
             </div>
             <p className="footer-description">
-              Kajiado Children's Home provides a safe and loving environment for abused, abandoned, 
+              kajiado Childrens Home provides a safe and loving environment for abused, abandoned, 
               and orphaned children in Kajiado, Kenya. Since 1997, we have supported hundreds of children 
               by offering shelter, care, and opportunities for a better future.
             </p>
@@ -134,7 +135,7 @@ export default function Footer() {
         <div className="footer-bottom">
           <div className="footer-bottom-content">
             <div className="footer-copyright">
-              <p>&copy; {currentYear} Kajiado Children's Home. All rights reserved. Caring for vulnerable children in Kajiado, Kenya since 1997.</p>
+              <p>&copy; {currentYear} kajiado Childrens Home. All rights reserved. Caring for vulnerable children in Kajiado, Kenya since 1997.</p>
             </div>
             <div className="footer-legal">
               <Link to="/terms" onClick={handleNavClick}>Terms of Service</Link>

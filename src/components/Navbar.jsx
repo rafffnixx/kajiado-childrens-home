@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTheme } from '../context/ThemeContext';
 import './Navbar.css';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const { isDarkMode, toggleTheme } = useTheme();
 
-  // Logo paths - images in public folder
-  const logoSrc = "/logo.png";
+  // Fix: Ensure logo paths are correct
+  const logoSrc = isDarkMode ? "/logo.jpg" : "/logo-dark.png";
+  // Alternative: Use a single logo that works in both modes
+  // const logoSrc = "/logo.png";
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -54,11 +58,11 @@ export default function Navbar() {
     return () => window.removeEventListener('keydown', handleEscKey);
   }, [isMenuOpen]);
 
-  // Navigation links - removed duplicate Get Involved from navLinks since it's now the CTA button
   const navLinks = [
     { path: '/', label: 'Home', icon: 'fas fa-home' },
     { path: '/about', label: 'About', icon: 'fas fa-heart' },
     { path: '/donors-partners', label: 'Partners', icon: 'fas fa-handshake' },
+    { path: '/children', label: 'Sponsor a Child', icon: 'fas fa-child' },
     { path: '/events', label: 'Events', icon: 'fas fa-calendar-alt' },
     { path: '/gallery', label: 'Gallery', icon: 'fas fa-images' },
     { path: '/contact', label: 'Contact', icon: 'fas fa-envelope' },
@@ -70,37 +74,69 @@ export default function Navbar() {
     return false;
   };
 
-  const handleNavClick = (path) => {
+  const handleNavClick = (path, e) => {
+    // Don't prevent default for the logo link
     closeMenu();
-    window.scrollTo(0, 0);
+    // Only scroll to top for navigation, not for logo click
+    if (path !== '/') {
+      window.scrollTo(0, 0);
+    }
+  };
+
+  // Handle logo click separately
+  const handleLogoClick = () => {
+    closeMenu();
+    // Don't scroll to top if already at home page
+    if (location.pathname !== '/') {
+      window.scrollTo(0, 0);
+    }
   };
 
   return (
     <>
       <header className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
         <div className="container nav-container">
-          <Link to="/" className="logo" onClick={() => handleNavClick('/')}>
+          {/* Fix: Remove onClick handler or keep it simple */}
+          <Link to="/" className="logo" onClick={handleLogoClick}>
             <img 
               src={logoSrc}
-              alt="Kajiado Children's Home Logo" 
+              alt="Kajiado Bright Horizons Logo" 
               className="logo-image"
+              onError={(e) => {
+                // Fallback if logo doesn't load
+                e.target.src = "/logo.jpg";
+                e.target.onerror = null;
+              }}
             />
             <div className="logo-text">
-              <h1>Kajiado Children's Home</h1>
-              <p>MAKING A DIFFERENCE ONE CHILD AT A TIME</p>
+              <h1>Kajiado Childrens Home</h1>
             </div>
           </Link>
 
-          <button 
-            className={`menu-toggle ${isMenuOpen ? 'active' : ''}`} 
-            onClick={toggleMenu}
-            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={isMenuOpen}
-          >
-            <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
-          </button>
+          <div className="nav-actions">
+            {/* Theme Toggle Button */}
+            <button 
+              className="theme-toggle"
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+            >
+              {isDarkMode ? (
+                <i className="fas fa-sun"></i>
+              ) : (
+                <i className="fas fa-moon"></i>
+              )}
+            </button>
 
-          {/* Desktop Navigation */}
+            <button 
+              className={`menu-toggle ${isMenuOpen ? 'active' : ''}`} 
+              onClick={toggleMenu}
+              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMenuOpen}
+            >
+              <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
+            </button>
+          </div>
+
           <ul className="nav-links">
             {navLinks.map((link) => (
               <li key={link.path}>
@@ -116,7 +152,7 @@ export default function Navbar() {
             ))}
             <li className="desktop-cta">
               <Link to="/get-involved" className="btn-outline-small" onClick={() => handleNavClick('/get-involved')}>
-                <i className="fas fa-hands-helping"></i> Get Involved
+                <i className="fas fa-hand-holding-heart"></i> Get Involved
               </Link>
             </li>
           </ul>
@@ -127,10 +163,18 @@ export default function Navbar() {
       <div className={`mobile-menu ${isMenuOpen ? 'active' : ''}`}>
         <div className="mobile-menu-header">
           <div className="mobile-logo">
-            <img src={logoSrc} alt="Kajiado Children's Home Logo" className="mobile-logo-image" />
+            <img 
+              src={logoSrc} 
+              alt="Kajiado Bright Horizons Logo" 
+              className="mobile-logo-image"
+              onError={(e) => {
+                e.target.src = "/logo.jpg";
+                e.target.onerror = null;
+              }}
+            />
             <div className="mobile-logo-text">
-              <h3>Kajiado Children's Home</h3>
-              <p>CARING FOR CHILDREN • KENYA</p>
+              <h3>Kajiado Childrens Home</h3>
+
             </div>
           </div>
           <button className="mobile-menu-close" onClick={closeMenu} aria-label="Close menu">
@@ -152,11 +196,17 @@ export default function Navbar() {
               </Link>
             </li>
           ))}
+          <li className="mobile-theme-toggle">
+            <button onClick={toggleTheme} className="theme-toggle-mobile">
+              <i className={isDarkMode ? "fas fa-sun" : "fas fa-moon"}></i>
+              <span>{isDarkMode ? "Light Mode" : "Dark Mode"}</span>
+            </button>
+          </li>
         </ul>
         
         <div className="mobile-menu-footer">
-          <Link to="/get-involved" className="btn-gold-mobile" onClick={() => handleNavClick('/get-involved')}>
-            <i className="fas fa-hands-helping"></i> Get Involved
+          <Link to="/donate" className="btn-gold-mobile" onClick={() => handleNavClick('/donate')}>
+            <i className="fas fa-hand-holding-heart"></i> Donate Now
           </Link>
           <div className="mobile-contact-info">
             <a href="tel:+254700123456">
